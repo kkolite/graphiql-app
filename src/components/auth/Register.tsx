@@ -18,9 +18,9 @@ export const Register = () => {
     e.preventDefault();
 
     const validation = [
-      validate(email, setEmailError, EValidate.EMAIL),
-      validate(name, setNameError, EValidate.USERNAME),
-      validate(password, setPasswordError, EValidate.PASSWORD)
+      validate(email, setEmailError, EValidate.EMAIL, t("EMAIL")),
+      validate(name, setNameError, EValidate.USERNAME, t("USERNAME")),
+      validate(password, setPasswordError, EValidate.PASSWORD, t("PASSWORD"))
     ]
 
     if (!validation.every((el) => el)) return;
@@ -34,7 +34,7 @@ export const Register = () => {
       <div>
         <input
           type='text'
-          placeholder='Name'
+          placeholder={t("name") as string}
           onChange={(e) => setName(e.target.value)}
         />
         <label>{nameError}</label>
@@ -42,7 +42,7 @@ export const Register = () => {
       <div>
         <input
           type='email'
-          placeholder='Email'
+          placeholder='E-mail'
           onChange={(e) => setEmail(e.target.value)}
         />
         <label>{emailError}</label>
@@ -50,12 +50,12 @@ export const Register = () => {
       <div>
         <input
           type='password'
-          placeholder='Password'
+          placeholder={t("password") as string}
           onChange={(e) => setPassword(e.target.value)}
         />
         <label>{passwordError}</label>
       </div>
-      <button>{t("CreateAccount")}</button>
+      <button>{t("createAccount")}</button>
     </form>
   );
 };

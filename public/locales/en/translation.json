@@ -3,6 +3,10 @@
     "pageLogin": "Login",
     "password": "Password",
     "logIn": "Log In",
-    "CreateAccount": "Create Account",
-    "name": "Name"
+    "createAccount": "Create Account",
+    "name": "Name",
+    "EMAIL": "Invalid Email",
+    "PASSWORD": "Invalid Password",
+    "USERNAME": "Invalid Username",
+    "LOGIN": "Error! Check Email and/or Password"
 }
