@@ -3,3 +3,9 @@ export enum EPages {
   LOGIN = '/login',
   IDE = '/ide'
 }
+
+export enum EValidate {
+  EMAIL = 'EMAIL',
+  USERNAME = 'USERNAME',
+  PASSWORD = 'PASSWORD'
+}

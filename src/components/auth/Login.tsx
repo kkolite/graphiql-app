@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import { fbLogin } from '../../utils/firebase';
+import { validate } from '../../utils/validate';
+import { EValidate } from '../../data/types';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // Validation function must be HERE
+    const validation = [
+      validate(email, setEmailError, EValidate.EMAIL),
+      validate(password, setPasswordError, EValidate.PASSWORD)
+    ]
+
+    if (!validation.every((el) => el)) return;
 
     const result = await fbLogin(email, password);
     console.log(result);
@@ -16,16 +25,22 @@ export const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
-        type='email'
-        placeholder='Email'
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input 
-        type='password'
-        placeholder='Password'
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div>
+        <input 
+          type='email'
+          placeholder='Email'
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>{emailError}</label>
+      </div>
+      <div>
+        <input 
+          type='password'
+          placeholder='Password'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <label>{passwordError}</label>
+      </div> 
       <button>Log In</button>
     </form>
   );
