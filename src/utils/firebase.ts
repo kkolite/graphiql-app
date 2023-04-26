@@ -17,8 +17,8 @@ const db = getFirestore(app);
 
 export const fbLogin = async (email: string, password: string) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
-    return true;
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    return res.user;
   } catch {
     return false;
   }
