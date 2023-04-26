@@ -15,15 +15,16 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export const logIn = async (email: string, password: string) => {
+export const fbLogin = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    console.error(err);
+    return true;
+  } catch {
+    return false;
   }
 };
 
-export const register = async (name: string, email: string, password: string) => {
+export const fbRegister = async (name: string, email: string, password: string) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -33,8 +34,9 @@ export const register = async (name: string, email: string, password: string) =>
       authProvider: "local",
       email,
     });
-  } catch (err) {
-    console.error(err);
+    return true;
+  } catch {
+    return false
   }
 };
 
