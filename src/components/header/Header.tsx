@@ -10,22 +10,24 @@ export const Header = () => {
 		i18n.changeLanguage(lang);
 	}
   return (
-    <div className="header__container">
-			<nav className="header__menu">
-				<NavLink className="item" to={EPages.HOME}>
-					{t("pageHome")}
-				</NavLink>
-				<NavLink className="item" to={EPages.IDE}>
-					GraphQL
-				</NavLink>
-				<NavLink className="item" to={EPages.LOGIN}>
-				{t("pageLogin")}
-				</NavLink>
-			</nav>
-			<div>
-				<button onClick={() => changeLang("en")}>EN</button>
-				<button onClick={() => changeLang("ru")}>RU</button>
+		<header className="header">
+			<div className="header__container">
+				<nav className="header__menu">
+					<NavLink className="item" to={EPages.HOME}>
+						{t("pageHome")}
+					</NavLink>
+					<NavLink className="item" to={EPages.IDE}>
+						GraphQL
+					</NavLink>
+					<NavLink className="item" to={EPages.LOGIN}>
+					{t("pageLogin")}
+					</NavLink>
+				</nav>
+				<div>
+					<button onClick={() => changeLang("en")}>EN</button>
+					<button onClick={() => changeLang("ru")}>RU</button>
+				</div>
 			</div>
-    </div>
+		</header>
   );
 };
