@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { fbRegister } from '../../utils/firebase';
 import { validate } from '../../utils/validate';
 import { EValidate } from '../../data/types';
@@ -10,6 +12,7 @@ export const Register = () => {
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,15 +32,15 @@ export const Register = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <input 
+        <input
           type='text'
-          placeholder='Name' 
+          placeholder='Name'
           onChange={(e) => setName(e.target.value)}
         />
         <label>{nameError}</label>
       </div>
       <div>
-        <input 
+        <input
           type='email'
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
@@ -45,14 +48,14 @@ export const Register = () => {
         <label>{emailError}</label>
       </div>
       <div>
-        <input 
+        <input
           type='password'
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <label>{passwordError}</label>
-      </div>      
-      <button>Create Account</button>
+      </div>
+      <button>{t("CreateAccount")}</button>
     </form>
   );
 };

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { fbLogin } from '../../utils/firebase';
 import { validate } from '../../utils/validate';
 import { EValidate } from '../../data/types';
@@ -9,9 +11,11 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
+  const { t } = useTranslation();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const validation = [
       validate(email, setEmailError, EValidate.EMAIL),
       validate(password, setPasswordError, EValidate.PASSWORD)
@@ -26,7 +30,7 @@ export const Login = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <input 
+        <input
           type='email'
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
@@ -34,14 +38,14 @@ export const Login = () => {
         <label>{emailError}</label>
       </div>
       <div>
-        <input 
+        <input
           type='password'
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <label>{passwordError}</label>
-      </div> 
-      <button>Log In</button>
+      </div>
+      <button>{t("logIn")}</button>
     </form>
   );
 };
