@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { fbLogin } from '../../utils/firebase';
 
-const Login = () => {
+export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,5 +30,3 @@ const Login = () => {
     </form>
   );
 };
-
-export default Login;
