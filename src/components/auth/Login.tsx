@@ -17,8 +17,8 @@ export const Login = () => {
     e.preventDefault();
 
     const validation = [
-      validate(email, setEmailError, EValidate.EMAIL),
-      validate(password, setPasswordError, EValidate.PASSWORD)
+      validate(email, setEmailError, EValidate.EMAIL, t("EMAIL")),
+      validate(password, setPasswordError, EValidate.PASSWORD, t("PASSWORD"))
     ]
 
     if (!validation.every((el) => el)) return;
@@ -32,7 +32,7 @@ export const Login = () => {
       <div>
         <input
           type='email'
-          placeholder='Email'
+          placeholder='E-mail'
           onChange={(e) => setEmail(e.target.value)}
         />
         <label>{emailError}</label>
@@ -40,7 +40,7 @@ export const Login = () => {
       <div>
         <input
           type='password'
-          placeholder='Password'
+          placeholder={t("password") as string}
           onChange={(e) => setPassword(e.target.value)}
         />
         <label>{passwordError}</label>
