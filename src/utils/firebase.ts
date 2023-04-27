@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithCustomToken, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { getToken, removeToken, setToken } from "./cookie";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbPIH_e5UAfYHCr3L7tIdmgRqU5tWfFhc",
@@ -18,7 +19,9 @@ const db = getFirestore(app);
 export const fbLogin = async (email: string, password: string) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
-    return res.user;
+    const token = await res.user.getIdToken();
+    setToken(token);
+    return true;
   } catch {
     return false;
   }
@@ -40,6 +43,18 @@ export const fbRegister = async (name: string, email: string, password: string) 
   }
 };
 
-export const logout = () => {
+export const fbLogout = () => {
+  removeToken();
   signOut(auth);
 };
+
+export const fbCheck = async () => {
+  try {
+    const token = getToken();
+    if (!token) return false;
+    await signInWithCustomToken(auth, token);
+    return true;
+  } catch {
+    return false;
+  }
+}
