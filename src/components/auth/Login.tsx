@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { fbLogin } from '../../utils/firebase';
@@ -12,6 +12,11 @@ export const Login = () => {
   const [passwordError, setPasswordError] = useState('');
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setEmailError(`${t("EMAIL")}`);
+    setPasswordError(`${t("PASSWORD")}`);
+  }, [t]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

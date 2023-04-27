@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { fbRegister } from '../../utils/firebase';
@@ -13,6 +13,13 @@ export const Register = () => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setEmailError(`${t("EMAIL")}`);
+    setNameError(`${t("USERNAME")}`);
+    setPasswordError(`${t("PASSWORD")}`);
+  }, [t]);
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
