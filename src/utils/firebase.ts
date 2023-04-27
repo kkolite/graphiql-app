@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, signInWithCustomToken, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+
 import { getToken, removeToken, setToken } from "./cookie";
 
 const firebaseConfig = {
