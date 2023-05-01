@@ -1,6 +1,5 @@
 import {
   // getNamedType,
-  // GraphQLSchema,
   // GraphQLField,
   GraphQLType,
   GraphQLObjectType,
@@ -38,7 +37,7 @@ export const postsSubschema = {
   schema: await schemaFromExecutor(remoteExecutor),
   executor: remoteExecutor
 }
-console.log(printSchema(postsSubschema.schema));
+
 console.log(postsSubschema.schema);
 const rootTypes = [
   postsSubschema.schema.getQueryType(),
@@ -50,8 +49,6 @@ console.log(rootTypes);
 const name: string[] = [];
   rootTypes.forEach((type: Maybe<GraphQLObjectType<string, GraphQLType>>) => {
     if (type) {
-      console.log('name ', type.name);
-
       console.log('isTypeOf ', type.isTypeOf);
       console.log('toJSON ', type.toJSON());
       console.log('toConfig ', type.toConfig());
@@ -89,14 +86,6 @@ const name: string[] = [];
   //   ...serialize(schema, type),
   //   instanceOf: getTypeInstance(type),
   // }))
-
-  
-/*
-This is an example snippet - you should consider tailoring it
-to your service.
-
-Note: we only handle the first operation here
-*/
 
 async function fetchGraphQL(
   operationsDoc: string,
@@ -147,6 +136,7 @@ async function startFetchUnnamedQuery1() {
   console.log(data);
 }
 
+startFetchUnnamedQuery1();
 
 
 export const IDE = () => {
