@@ -15,54 +15,49 @@ export const Register = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (emailError !== '') setEmailError(`${t("EMAIL")}`);
-    if (nameError !== '') setNameError(`${t("USERNAME")}`);
-    if (passwordError !== '') setPasswordError(`${t("PASSWORD")}`);
+    if (emailError !== '') setEmailError(`${t('EMAIL')}`);
+    if (nameError !== '') setNameError(`${t('USERNAME')}`);
+    if (passwordError !== '') setPasswordError(`${t('PASSWORD')}`);
   }, [emailError, nameError, passwordError, t]);
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validation = [
-      validate(email, setEmailError, EValidate.EMAIL, t("EMAIL")),
-      validate(name, setNameError, EValidate.USERNAME, t("USERNAME")),
-      validate(password, setPasswordError, EValidate.PASSWORD, t("PASSWORD"))
-    ]
+      validate(email, setEmailError, EValidate.EMAIL, t('EMAIL')),
+      validate(name, setNameError, EValidate.USERNAME, t('USERNAME')),
+      validate(password, setPasswordError, EValidate.PASSWORD, t('PASSWORD')),
+    ];
 
     if (!validation.every((el) => el)) return;
 
     const result = await fbRegister(name, email, password);
     console.log(result);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <input
-          type='text'
-          placeholder={t("name") as string}
+          type="text"
+          placeholder={t('name') as string}
           onChange={(e) => setName(e.target.value)}
         />
         <label>{nameError}</label>
       </div>
       <div>
-        <input
-          type='email'
-          placeholder='E-mail'
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
         <label>{emailError}</label>
       </div>
       <div>
         <input
-          type='password'
-          placeholder={t("password") as string}
+          type="password"
+          placeholder={t('password') as string}
           onChange={(e) => setPassword(e.target.value)}
         />
         <label>{passwordError}</label>
       </div>
-      <button>{t("createAccount")}</button>
+      <button>{t('createAccount')}</button>
     </form>
   );
 };

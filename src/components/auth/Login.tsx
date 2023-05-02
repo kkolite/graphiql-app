@@ -14,43 +14,39 @@ export const Login = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (emailError !== '') setEmailError(`${t("EMAIL")}`);
-    if (passwordError !== '') setPasswordError(`${t("PASSWORD")}`);
+    if (emailError !== '') setEmailError(`${t('EMAIL')}`);
+    if (passwordError !== '') setPasswordError(`${t('PASSWORD')}`);
   }, [emailError, passwordError, t]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validation = [
-      validate(email, setEmailError, EValidate.EMAIL, t("EMAIL")),
-      validate(password, setPasswordError, EValidate.PASSWORD, t("PASSWORD"))
-    ]
+      validate(email, setEmailError, EValidate.EMAIL, t('EMAIL')),
+      validate(password, setPasswordError, EValidate.PASSWORD, t('PASSWORD')),
+    ];
 
     if (!validation.every((el) => el)) return;
 
     const result = await fbLogin(email, password);
     console.log(result);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <input
-          type='email'
-          placeholder='E-mail'
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
         <label>{emailError}</label>
       </div>
       <div>
         <input
-          type='password'
-          placeholder={t("password") as string}
+          type="password"
+          placeholder={t('password') as string}
           onChange={(e) => setPassword(e.target.value)}
         />
         <label>{passwordError}</label>
       </div>
-      <button>{t("logIn")}</button>
+      <button>{t('logIn')}</button>
     </form>
   );
 };

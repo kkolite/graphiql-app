@@ -3,5 +3,5 @@ export const ERROR_MESSAGE = {
   EMAIL: 'Invalid Email',
   PASSWORD: 'Invalid Password',
   USERNAME: 'Invalid Username',
-  LOGIN: 'Error! Check Email and/or Password'
-}
+  LOGIN: 'Error! Check Email and/or Password',
+};

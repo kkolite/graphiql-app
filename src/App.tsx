@@ -1,8 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Error, Auth, Home, IDE } from './pages'
-import { Layout } from './components'
-import { EPages } from './data/types'
-import './styles/App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Error, Auth, Home, IDE } from './pages';
+import { Layout } from './components';
+import { EPages } from './data/types';
+import './styles/app.scss';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,4 +33,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
