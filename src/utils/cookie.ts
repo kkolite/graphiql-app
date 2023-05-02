@@ -8,7 +8,9 @@ export const setToken = (token: string) => {
 
 export const getToken = () => {
   const token = 'token';
-  let matches = document.cookie.match(new RegExp(
+  const matches = document.cookie.match(
+    new RegExp(
+      /* eslint-disable */
     "(?:^|; )" + token.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
