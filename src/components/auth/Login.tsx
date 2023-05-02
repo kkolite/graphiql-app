@@ -14,9 +14,9 @@ export const Login = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    setEmailError(`${t("EMAIL")}`);
-    setPasswordError(`${t("PASSWORD")}`);
-  }, [t]);
+    if (emailError !== '') setEmailError(`${t("EMAIL")}`);
+    if (passwordError !== '') setPasswordError(`${t("PASSWORD")}`);
+  }, [emailError, passwordError, t]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

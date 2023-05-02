@@ -15,10 +15,10 @@ export const Register = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    setEmailError(`${t("EMAIL")}`);
-    setNameError(`${t("USERNAME")}`);
-    setPasswordError(`${t("PASSWORD")}`);
-  }, [t]);
+    if (emailError !== '') setEmailError(`${t("EMAIL")}`);
+    if (nameError !== '') setNameError(`${t("USERNAME")}`);
+    if (passwordError !== '') setPasswordError(`${t("PASSWORD")}`);
+  }, [emailError, nameError, passwordError, t]);
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
