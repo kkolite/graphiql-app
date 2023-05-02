@@ -3,37 +3,15 @@ import { Suspense, useState } from 'react';
 import { Shema } from './../components/shema/Shema';
 import stide from './ide.module.css';
 
-// function getTypeInstance(type: GraphQLSchema) {
-//   if (type instanceof GraphQLInterfaceType) {
-//     return 'interface'
-//   } else if (type instanceof GraphQLUnionType) {
-//     return 'union'
-//   } else if (type instanceof GraphQLEnumType) {
-//     return 'enum'
-//   } else if (type instanceof GraphQLInputObjectType) {
-//     return 'input'
-//   } else {
-//     return 'type'
-//   }
-// }
-
-// const objectValues =
-// Object.values || (obj => Object.keys(obj).map(key => obj[key]));
-// const types = objectValues(typeMap)
-// .sort((type1, type2) => type1.name.localeCompare(type2.name))
-// .filter(type => !defaultTypes.includes(type.name))
-// .map(type => ({
-//   ...type,
-//   ...serialize(schema, type),
-//   instanceOf: getTypeInstance(type),
-// }))
-
+//'https://rickandmortyapi.com/graphql'
+//https://spacex-production.up.railway.app/graphql
 async function fetchGraphQL(
   operationsDoc: string,
   operationName: string,
-  variables: Record<string, unknown>
+  variables: Record<string, unknown>,
+  endpoint: string
 ) {
-  const result = await fetch('https://rickandmortyapi.com/graphql', {
+  const result = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -57,28 +35,38 @@ query MyQuery {
       name
     }
   }
-  }`;
+}`;
 
-async function fetchUnnamedQuery1() {
-  return await fetchGraphQL(operationsDoc, 'MyQuery', {});
-}
+async function startFetchUnnamedQuery(endpoint: string) {
+  if (endpoint === '') endpoint = 'https://rickandmortyapi.com/graphql';
+  if (endpoint !== '') {
+    const { errors, data } = await fetchGraphQL(operationsDoc, 'MyQuery', {}, endpoint);
 
-async function startFetchUnnamedQuery1() {
-  const { errors, data } = await fetchUnnamedQuery1();
-
-  if (errors) {
-    console.error(errors);
+    if (errors) {
+      console.error(errors);
+    } else {
+      return data;
+    }
   }
-  console.log(data);
 }
-
-startFetchUnnamedQuery1();
 
 export const IDE = () => {
   const [showDoc, setShowDoc] = useState(false);
+  const [endpoint, setEndpoint] = useState('');
+  const [result, setResult] = useState('');
+  const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEndpoint(e.target.value);
+
+    const data = startFetchUnnamedQuery(endpoint);
+    data.then((item) => {
+      console.log('item', item);
+      console.log('stringify', JSON.stringify(item));
+      setResult(JSON.stringify(item));
+    });
+  };
+
   return (
     <div className={stide.ide}>
-      IDE
       {/* <div>
         <h2>Explorer</h2>
         <div>
@@ -87,13 +75,20 @@ export const IDE = () => {
           ))}
         </div>
       </div> */}
+      endpoint:
+      <input
+        placeholder="input endpoint"
+        value={endpoint}
+        name="endpoint"
+        onChange={handelChange}
+      />
       <div>
-        <h2>GraphiQL</h2>
+        <h2>GraphQL</h2>
         <textarea key="1" defaultValue={operationsDoc} rows={35} cols={45} name="story"></textarea>
       </div>
       <div>
         <h2>Result</h2>
-        <div>тут результат см. в консоле)</div>
+        <div>{result}</div>
       </div>
       <label>
         <input type="checkbox" checked={showDoc} onChange={(e) => setShowDoc(e.target.checked)} />
