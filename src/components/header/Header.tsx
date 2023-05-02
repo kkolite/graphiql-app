@@ -2,6 +2,9 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { EPages } from '../../data/types';
 
+import logo from '../../assets/graphql.svg';
+import '../../styles/header.scss';
+
 export const Header = () => {
   const { t, i18n } = useTranslation();
 
@@ -11,14 +14,19 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <nav className="header__menu">
-          <NavLink className="item" to={EPages.HOME}>
+        <div className="header__logo">
+          <a href="/">
+            <img src={logo} alt="" />
+          </a>
+        </div>
+        <nav className="header__menu nav">
+          <NavLink className="nav__item" to={EPages.HOME}>
             {t('pageHome')}
           </NavLink>
-          <NavLink className="item" to={EPages.IDE}>
+          <NavLink className="nav__item" to={EPages.IDE}>
             GraphQL
           </NavLink>
-          <NavLink className="item" to={EPages.LOGIN}>
+          <NavLink className="nav__item" to={EPages.LOGIN}>
             {t('pageLogin')}
           </NavLink>
         </nav>
