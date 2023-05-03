@@ -1,7 +1,7 @@
 import { Suspense, useState } from 'react';
 
 import { Shema } from './../components/shema/Shema';
-import stide from './ide.module.css';
+import '../styles/ide.scss';
 
 //'https://rickandmortyapi.com/graphql'
 //https://spacex-production.up.railway.app/graphql
@@ -66,39 +66,45 @@ export const IDE = () => {
   };
 
   return (
-    <div className={stide.ide}>
-      {/* <div>
-        <h2>Explorer</h2>
-        <div>
-          {name.map((item) => (
-            <p>{`${item}`}</p>
-          ))}
+    <section className="main__container main__graph graph">
+      <div className="graph__query">
+        <div className="graph__endpoint">
+          <div>endpoint:</div>
+          <input
+            className="graph__intpoint"
+            placeholder="input endpoint"
+            value={endpoint}
+            name="endpoint"
+            onChange={handelChange}
+          />
         </div>
-      </div> */}
-      endpoint:
-      <input
-        placeholder="input endpoint"
-        value={endpoint}
-        name="endpoint"
-        onChange={handelChange}
-      />
-      <div>
-        <h2>GraphQL</h2>
-        <textarea key="1" defaultValue={operationsDoc} rows={35} cols={45} name="story"></textarea>
+        <div className="graph__btn-endpoint">Send</div>
       </div>
-      <div>
-        <h2>Result</h2>
-        <div>{result}</div>
+
+      <div className="graph__docs">
+        <label>
+          <input type="checkbox" checked={showDoc} onChange={(e) => setShowDoc(e.target.checked)} />
+          Show Doc
+        </label>
+        {showDoc && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Shema></Shema>
+          </Suspense>
+        )}
       </div>
-      <label>
-        <input type="checkbox" checked={showDoc} onChange={(e) => setShowDoc(e.target.checked)} />
-        Show Doc
-      </label>
-      {showDoc && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <Shema></Shema>
-        </Suspense>
-      )}
-    </div>
+
+      <div className="graph__edit">
+        <div className="graph__value">
+          <textarea
+            key="1"
+            defaultValue={operationsDoc}
+            rows={35}
+            cols={45}
+            name="story"
+          ></textarea>
+        </div>
+        <div className="graph__result">{result}</div>
+      </div>
+    </section>
   );
 };
