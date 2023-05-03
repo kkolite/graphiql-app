@@ -17,9 +17,11 @@
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
+    "pretty-print-json": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.2",
+    "react-json-pretty": "^2.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0"
   },
