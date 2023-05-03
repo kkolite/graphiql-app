@@ -55,6 +55,7 @@ input::-ms-clear {
   display: none;
 }
 button {
+  background-color: inherit;
   cursor: pointer;
 }
 button::-moz-focus-inner {
@@ -140,6 +141,11 @@ h6 {
 .error-block {
   color: crimson;
 }
+
+.active {
+  color: #A545B1;
+}
+
 
 .header {
   width: 100%;

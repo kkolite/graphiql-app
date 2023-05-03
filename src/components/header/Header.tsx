@@ -30,9 +30,15 @@ export const Header = () => {
             {t('pageLogin')}
           </NavLink>
         </nav>
-        <div>
-          <button onClick={() => changeLang('en')}>EN</button>
-          <button onClick={() => changeLang('ru')}>RU</button>
+        <div className="header__btn-box">
+          <div className="header__sign">
+            <button>Sign in</button>
+            <button>Sign up</button>
+          </div>
+          <div className="header__lang">
+            <button onClick={() => changeLang('en')}>EN</button>
+            <button onClick={() => changeLang('ru')}>RU</button>
+          </div>
         </div>
       </div>
     </header>
