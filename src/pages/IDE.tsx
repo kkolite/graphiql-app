@@ -6,7 +6,7 @@ import { Shema } from './../components/shema/Shema';
 import '../styles/ide.scss';
 import '../styles/json.scss';
 
-//'https://rickandmortyapi.com/graphql'
+//https://rickandmortyapi.com/graphql
 //https://spacex-production.up.railway.app/graphql
 async function fetchGraphQL(
   operationsDoc: string,
@@ -28,8 +28,7 @@ async function fetchGraphQL(
   return result.json();
 }
 
-const operationsDoc = `
-  query MyQuery {
+const operationsDoc = `query MyQuery {
     characters {
       results {
         image
@@ -41,10 +40,10 @@ const operationsDoc = `
   }
 `;
 
-async function startFetchUnnamedQuery(endpoint: string, query: string) {
+async function startFetchUnnamedQuery(endpoint: string, query: string, name: string) {
   if (endpoint === '') endpoint = 'https://rickandmortyapi.com/graphql';
   if (endpoint !== '' && query !== '') {
-    const { errors, data } = await fetchGraphQL(query, 'MyQuery', {}, endpoint);
+    const { errors, data } = await fetchGraphQL(query, name, {}, endpoint);
 
     if (errors) {
       return errors;
@@ -58,6 +57,7 @@ export const IDE = () => {
   const [showDoc, setShowDoc] = useState(false);
   const [endpoint, setEndpoint] = useState('');
   const [query, setQuery] = useState(operationsDoc);
+  const [queryName, setqueryName] = useState('');
   const [result, setResult] = useState('');
   const { t } = useTranslation();
 
@@ -65,22 +65,28 @@ export const IDE = () => {
     setEndpoint(e.target.value);
   };
   const handelChangeQ = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const userQuery = e.target.value.split('{');
-    const param = userQuery[0].split(' ');
-    if (param.length === 2) {
-      const paramQuery = param[0];
-      const paramName = param[1];
-    } else {
-      `qyery MyQuery ${userQuery[1]}`;
-    }
     setQuery(e.target.value);
   };
 
   const handleClick = () => {
-    if (endpoint !== '') {
-      const data = startFetchUnnamedQuery(endpoint, query);
+    if (endpoint !== '' && query !== '') {
+      const userQuery = query.split('{');
+      let queryPost = query;
+      const param = userQuery[0].trim().split(' ');
+      let paramName = '';
+      if (param.length === 2 && param[0] !== '' && param[1] !== '') {
+        paramName = param[1];
+        setqueryName(paramName);
+      } else {
+        userQuery.shift();
+        setqueryName('MyQuery');
+        paramName = 'MyQuery';
+        const str = userQuery.join('{');
+        queryPost =`query ${queryName} { ${str}`;
+      }
+      setQuery(queryPost);
+      const data = startFetchUnnamedQuery(endpoint, queryPost, paramName);
       data.then((item) => {
-        console.log('item', item);
         setResult(JSON.stringify(item, null, 2));
       });
     }
