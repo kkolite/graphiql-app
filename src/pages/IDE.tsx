@@ -37,10 +37,10 @@ query MyQuery {
   }
 }`;
 
-async function startFetchUnnamedQuery(endpoint: string) {
+async function startFetchUnnamedQuery(endpoint: string, query: string) {
   if (endpoint === '') endpoint = 'https://rickandmortyapi.com/graphql';
   if (endpoint !== '') {
-    const { errors, data } = await fetchGraphQL(operationsDoc, 'MyQuery', {}, endpoint);
+    const { errors, data } = await fetchGraphQL(query, 'MyQuery', {}, endpoint);
 
     if (errors) {
       console.error(errors);
@@ -53,16 +53,24 @@ async function startFetchUnnamedQuery(endpoint: string) {
 export const IDE = () => {
   const [showDoc, setShowDoc] = useState(false);
   const [endpoint, setEndpoint] = useState('');
+  const [query, setQuery] = useState(operationsDoc);
   const [result, setResult] = useState('');
-  const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEndpoint(e.target.value);
 
-    const data = startFetchUnnamedQuery(endpoint);
-    data.then((item) => {
-      console.log('item', item);
-      console.log('stringify', JSON.stringify(item));
-      setResult(JSON.stringify(item));
-    });
+  const handelChangeEP = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEndpoint(e.target.value);
+  };
+  const handelChangeQ = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setQuery(e.target.value);
+  };
+
+  const handleClick = () => {
+    if (endpoint !== '') {
+      const data = startFetchUnnamedQuery(endpoint, query);
+      data.then((item) => {
+        console.log('item', item);
+        setResult(JSON.stringify(item));
+      });
+    }
   };
 
   return (
@@ -75,10 +83,12 @@ export const IDE = () => {
             placeholder="input endpoint"
             value={endpoint}
             name="endpoint"
-            onChange={handelChange}
+            onChange={handelChangeEP}
           />
         </div>
-        <div className="graph__btn-endpoint">Send</div>
+        <div className="graph__btn-endpoint" onClick={handleClick}>
+          Send
+        </div>
       </div>
 
       <div className="graph__docs">
@@ -88,7 +98,7 @@ export const IDE = () => {
         </label>
         {showDoc && (
           <Suspense fallback={<div>Loading...</div>}>
-            <Shema></Shema>
+            <Shema endpoint={endpoint}></Shema>
           </Suspense>
         )}
       </div>
@@ -96,8 +106,8 @@ export const IDE = () => {
       <div className="graph__edit">
         <div className="graph__value">
           <textarea
-            key="1"
-            defaultValue={operationsDoc}
+            value={query}
+            onChange={handelChangeQ}
             rows={35}
             cols={45}
             name="story"
