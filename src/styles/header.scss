@@ -1,4 +1,5 @@
 .header {
+  border-bottom: 1px solid #C8945D;
   &__container {
     display: flex;
     align-items: center;
@@ -6,8 +7,66 @@
   }
   &__logo {}
   &__menu {}
+  &__btn-box {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  &__sign {
+    & button {
+      width: 91px;
+      height: 28px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      &:hover {
+        background-color: #A545B1;
+        border: 1px solid #A545B1;
+        color: #ffffff;
+      }
+    }
+    & button:not(:last-child) {
+      margin: 0 .8rem 0 0;
+    }
+  }
+  &__lang {
+    & button {
+      &:hover {
+        color: #A545B1;
+      }
+    }
+    & button:not(:last-child) {
+      margin: 0 .8rem 0 0;
+    }
+  }
 }
 
 .nav {
-  &__item {}
+  font-weight: 500;
+  line-height: 125%;
+  &__item {
+    position: relative;
+    &:after {
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      content: "";
+      display: block;
+      width: 0%;
+      height: 2px;
+      background-color: #A545B1;
+      -webkit-transition: width .3s ease-in-out;
+      -moz--transition: width .3s ease-in-out;
+      transition: width .3s ease-in-out;
+    }
+    &:hover {
+      color: #A545B1;
+    }
+    &:hover:after,
+    &:focus:after {
+        width: 100%;
+    }
+    &:not(:last-child) {
+      margin: 0 2rem 0 0;
+    }
+  }
 }
