@@ -1,75 +1,36 @@
-import {
-  GraphQLType,
-  GraphQLObjectType,
-  printSchema,
-  // getNamedType,
-  // GraphQLField,
-  // GraphQLInterfaceType,
-  // GraphQLUnionType,
-  // GraphQLEnumType,
-  // GraphQLInputObjectType,
-  // GraphQLSchema,
-} from 'graphql';
-import { buildHTTPExecutor } from '@graphql-tools/executor-http';
-import { schemaFromExecutor } from '@graphql-tools/wrap';
-import { Maybe } from 'graphql/jsutils/Maybe';
+import { IQuery } from '../../data/types';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getSchema } from '../../store/slice/querySlice';
+import { Select } from './Select/Select';
+import { Type } from './Type/Type';
 
-const remoteExecutor = buildHTTPExecutor({
-  endpoint: 'https://rickandmortyapi.com/graphql',
-});
-export const postsSubschema = {
-  schema: await schemaFromExecutor(remoteExecutor),
-  executor: remoteExecutor,
-};
+export const Shema = () => {
+  const data = useAppSelector(store => store.query.data);
+  const isLoading = useAppSelector(store => store.query.isLoading);
+  const dispatch = useAppDispatch();
 
-interface IPropsModel {
-  // onClose?: () => void | undefined;
-  endpoint: string;
-}
+  const keysArr = Object.keys(data);
+  //temp
 
-export const Shema = ({ endpoint }: IPropsModel) => {
-  console.log('endpoint', endpoint);
-  const rootTypes = [
-    postsSubschema.schema.getQueryType(),
-    postsSubschema.schema.getMutationType(),
-    postsSubschema.schema.getSubscriptionType(),
-  ].filter((x) => !!x);
+  const handleClick = () => {
+    dispatch(getSchema('https://rickandmortyapi.com/graphql'));
+  }
 
-  console.log(rootTypes);
-  const name: string[] = [];
-  rootTypes.forEach((type: Maybe<GraphQLObjectType<string, GraphQLType>>) => {
-    if (type) {
-      console.log('isTypeOf ', type.isTypeOf);
-      console.log('toJSON ', type.toJSON());
-      console.log('toConfig ', type.toConfig());
-      console.log('getFields', type.getFields());
-      console.log('getType', postsSubschema.schema.getType('Continent'));
-      const fields = type.getFields();
-      Object.values(fields).forEach((fieldName) => {
-        console.log('fieldName', fieldName);
-        name.push(fieldName.name);
-        // console.log('name', fieldName.name);
-        console.log('type', fieldName.type);
-        // console.log('type', fieldName.type);
-        // if (fieldName.type == 'GraphQLObjectType')
-
-        // console.log('index', index);
-        // console.log('fields[fieldName]', fields[fieldName]);
-        // console.log(fields[fieldName].astNode);
-        // if (!fields[fieldName].astNode) {
-        //   const astNode = graphQLCustomTypeDef.fields.find(field => field.name.value === graphQLSchemaTypeFieldName);
-
-        //   if (astNode) {
-        //    graphQLSchemaTypeField.astNode = astNode;
-        //   }
-        //  }
-      });
-    }
-  });
   return (
-    <div id={`1`} className="modal">
+    <>
       <h2>Documentation Explorer</h2>
-      <pre>{printSchema(postsSubschema.schema)}</pre>
-    </div>
+      <button onClick={handleClick}>Get docs</button>      
+      {
+        isLoading
+        ? <p>Loading...</p>
+        : <div id={`1`} className="modal">
+            <Select/>
+            {keysArr.map((el, i) => (
+              <Type obj={data} query={el} key={i} />
+            ))}
+          </div>
+      }
+    </>
+    
   );
 };
