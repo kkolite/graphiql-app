@@ -10,7 +10,7 @@ i18n
   .init({
     fallbackLng: 'ru',
     returnNull: false,
-    debug: true,
+    debug: false,
     // detection: {
     // 	order: ['queryString', 'cookie'],
     // 	cache: ['cookie'],

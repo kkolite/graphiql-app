@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { EPages } from '../../data/types';
+import i18next from 'i18next';
 
+import { EPages } from '../../data/types';
 import { setBtnSignIn, setBtnSignUp } from '../../store/slice/headerSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
@@ -9,6 +10,7 @@ import logo from '../../assets/graphql.svg';
 import '../../styles/header.scss';
 
 export const Header = () => {
+  console.log(i18next.languages);
   const dispatch = useAppDispatch();
   const { isSignIn, isSignUp } = useAppSelector((state) => state.headers);
   const { t, i18n } = useTranslation();

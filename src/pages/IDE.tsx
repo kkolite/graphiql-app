@@ -1,5 +1,6 @@
 import { Suspense, useState } from 'react';
 import JSONPretty from 'react-json-pretty';
+import { useTranslation } from 'react-i18next';
 
 import { Shema } from './../components/shema/Shema';
 import '../styles/ide.scss';
@@ -58,6 +59,7 @@ export const IDE = () => {
   const [endpoint, setEndpoint] = useState('');
   const [query, setQuery] = useState(operationsDoc);
   const [result, setResult] = useState('');
+  const { t } = useTranslation();
 
   const handelChangeEP = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEndpoint(e.target.value);
@@ -80,17 +82,17 @@ export const IDE = () => {
     <section className="main__container main__graph graph">
       <div className="graph__query">
         <div className="graph__endpoint">
-          <div>Endpoint:</div>
+          <div>{t('Endpoint')}:</div>
           <input
             className="graph__intpoint"
-            placeholder="input endpoint"
+            placeholder={t('inputendp') as string}
             value={endpoint}
             name="endpoint"
             onChange={handelChangeEP}
           />
         </div>
         <div className="graph__btn-endpoint" onClick={handleClick}>
-          Send
+          {t('SEND')}
         </div>
       </div>
 
