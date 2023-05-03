@@ -48,9 +48,11 @@ const querySlice = createSlice({
   initialState,
   reducers: {
     setSelect(state, { payload }: PayloadAction<string>) {
-      state.data = {
-        [payload]: state.origin[payload]
-      }
+      state.data = payload
+      ? {
+          [payload]: state.origin[payload]
+        }
+      : state.origin;
     }
   },
   extraReducers: (builder) => {
