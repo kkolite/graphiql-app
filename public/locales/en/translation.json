@@ -1,5 +1,5 @@
 {
-    "pageHome": "HOME",
+    "pageHome": "Home",
     "pageLogin": "Login",
     "password": "Password",
     "logIn": "Log In",
@@ -8,5 +8,8 @@
     "EMAIL": "Invalid Email",
     "PASSWORD": "Invalid Password",
     "USERNAME": "Invalid Username",
-    "LOGIN": "Error! Check Email and/or Password"
+    "LOGIN": "Error! Check Email and/or Password",
+    "SEND": "Send",
+    "Endpoint": "Endpoint",
+    "inputendp": "input endpoint"
 }

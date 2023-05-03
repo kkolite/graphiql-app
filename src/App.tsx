@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { Error, Auth, Home, IDE } from './pages';
 import { Layout } from './components';
 import { EPages } from './data/types';
@@ -9,6 +9,7 @@ function App() {
     {
       path: '/',
       element: <Layout />,
+      errorElement: <Error />,
       children: [
         {
           index: true,
@@ -22,11 +23,19 @@ function App() {
           path: EPages.IDE,
           element: <IDE />,
         },
+        {
+          path: 'error',
+          element: <Error />,
+        },
       ],
     },
     {
-      path: '/*',
-      element: <Error />,
+      path: '/error',
+      element: <Layout />,
+    },
+    {
+      path: '*',
+      element: <Navigate to="/error" replace />,
     },
   ]);
 
