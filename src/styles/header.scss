@@ -23,19 +23,37 @@
         border: 1px solid #A545B1;
         color: #ffffff;
       }
-    }
-    & button:not(:last-child) {
-      margin: 0 .8rem 0 0;
+      &:not(:last-child) {
+        margin: 0 .8rem 0 0;
+      }
     }
   }
   &__lang {
     & button {
+      position: relative;
       &:hover {
         color: #A545B1;
       }
-    }
-    & button:not(:last-child) {
-      margin: 0 .8rem 0 0;
+      &:not(:last-child) {
+        margin: 0 .8rem 0 0;
+      }
+      &:after {
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: #A545B1;
+        -webkit-transition: width .3s ease-in-out;
+        -moz--transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+      }
+      &:hover:after,
+      &:focus:after {
+          width: 100%;
+      }
     }
   }
 }
