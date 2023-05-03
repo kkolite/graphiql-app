@@ -30,10 +30,6 @@ function App() {
       ],
     },
     {
-      path: '/error',
-      element: <Layout />,
-    },
-    {
       path: '*',
       element: <Navigate to="/error" replace />,
     },
