@@ -43,11 +43,11 @@ const operationsDoc = `
 
 async function startFetchUnnamedQuery(endpoint: string, query: string) {
   if (endpoint === '') endpoint = 'https://rickandmortyapi.com/graphql';
-  if (endpoint !== '') {
+  if (endpoint !== '' && query !== '') {
     const { errors, data } = await fetchGraphQL(query, 'MyQuery', {}, endpoint);
 
     if (errors) {
-      console.error(errors);
+      return errors;
     } else {
       return data;
     }
@@ -65,6 +65,14 @@ export const IDE = () => {
     setEndpoint(e.target.value);
   };
   const handelChangeQ = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const userQuery = e.target.value.split('{');
+    const param = userQuery[0].split(' ');
+    if (param.length === 2) {
+      const paramQuery = param[0];
+      const paramName = param[1];
+    } else {
+      `qyery MyQuery ${userQuery[1]}`;
+    }
     setQuery(e.target.value);
   };
 
