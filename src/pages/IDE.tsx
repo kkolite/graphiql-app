@@ -1,7 +1,9 @@
 import { Suspense, useState } from 'react';
+import JSONPretty from 'react-json-pretty';
 
 import { Shema } from './../components/shema/Shema';
 import '../styles/ide.scss';
+import '../styles/json.scss';
 
 //'https://rickandmortyapi.com/graphql'
 //https://spacex-production.up.railway.app/graphql
@@ -26,16 +28,17 @@ async function fetchGraphQL(
 }
 
 const operationsDoc = `
-query MyQuery {
-  characters {
-    results {
-      image
-      id
-      gender
-      name
+  query MyQuery {
+    characters {
+      results {
+        image
+        id
+        gender
+        name
+      }
     }
   }
-}`;
+`;
 
 async function startFetchUnnamedQuery(endpoint: string, query: string) {
   if (endpoint === '') endpoint = 'https://rickandmortyapi.com/graphql';
@@ -68,7 +71,7 @@ export const IDE = () => {
       const data = startFetchUnnamedQuery(endpoint, query);
       data.then((item) => {
         console.log('item', item);
-        setResult(JSON.stringify(item));
+        setResult(JSON.stringify(item, null, 2));
       });
     }
   };
@@ -77,7 +80,7 @@ export const IDE = () => {
     <section className="main__container main__graph graph">
       <div className="graph__query">
         <div className="graph__endpoint">
-          <div>endpoint:</div>
+          <div>Endpoint:</div>
           <input
             className="graph__intpoint"
             placeholder="input endpoint"
@@ -113,7 +116,7 @@ export const IDE = () => {
             name="story"
           ></textarea>
         </div>
-        <div className="graph__result">{result}</div>
+        <JSONPretty className="graph__result" id="json-pretty" data={result}></JSONPretty>
       </div>
     </section>
   );
