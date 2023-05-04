@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
@@ -10,6 +11,7 @@ import logo from '../../assets/graphql.svg';
 import '../../styles/header.scss';
 
 export const Header = () => {
+  const [sticky, setSticky] = useState('');
   console.log(i18next.languages);
   const dispatch = useAppDispatch();
   const { isSignIn, isSignUp } = useAppSelector((state) => state.headers);
@@ -30,8 +32,24 @@ export const Header = () => {
     }
   };
 
+  useEffect(() => {
+    console.log('hello');
+    window.addEventListener('scroll', isSticky);
+    return () => {
+      window.removeEventListener('scroll', isSticky);
+    };
+  }, []);
+
+  const isSticky = () => {
+    const scrollTop = window.scrollY;
+    const stickyClass = scrollTop >= 18 ? 'sticky' : '';
+    setSticky(stickyClass);
+  };
+
+  const classes = `header ${sticky}`;
+
   return (
-    <header className="header">
+    <header className={classes}>
       <div className="header__container">
         <div className="header__logo">
           <a href="/">
