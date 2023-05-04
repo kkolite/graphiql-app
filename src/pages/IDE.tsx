@@ -30,6 +30,8 @@ export const IDE = () => {
   const [query, setQuery] = useState(operationsDoc);
   const [result, setResult] = useState('');
   const { t } = useTranslation();
+  let lengthStr = '';
+  for (let i = 1; i < query.split(/\r\n|\r|\n/).length + 1; i += 1) lengthStr += `${i}\r\n`;
 
   const handelChangeEP = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(e.target.value));
@@ -88,6 +90,7 @@ export const IDE = () => {
       </div>
 
       <div className="graph__edit">
+        <div className="graph__count">{lengthStr}</div>
         <div className="graph__value">
           <textarea
             value={query}
@@ -96,6 +99,8 @@ export const IDE = () => {
             cols={45}
             name="story"
           ></textarea>
+          <h2>Query Variables</h2>
+          <textarea rows={5} cols={45}></textarea>
         </div>
         <JSONPretty className="graph__result" id="json-pretty" data={result}></JSONPretty>
       </div>
