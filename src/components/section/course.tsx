@@ -1,13 +1,18 @@
 import '../../styles/coursepage.scss';
 import course from '../../assets/course.webp';
 import cats from '../../assets/cats.png';
+import meow from '../../assets/cat-meow.mp3';
 
 export const CoursePage = () => {
+  const audio = new Audio(meow);
+  const start = () => {
+    audio.play();
+  };
   return (
     <section className="main__course course">
       <div className="course__cats-box __container">
-        <div className="course__fon-cats">
-          <img src={cats} alt="" />
+        <div className="course__fon-cats" onClick={() => start()}>
+          <img src={cats} alt="he cat's smile" />
         </div>
       </div>
 
