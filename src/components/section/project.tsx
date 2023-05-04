@@ -6,7 +6,7 @@ export const ProjectPage = () => {
       <h2 className="project__title">Project</h2>
       <div className="project__block">
         <div className="project__right">
-          <div className="project__about">
+          <div className="project__cards">
             <h2 className="project__chapter">ABOUT-THE-PROJECT</h2>
             <div className="project__text">
               The task is to implement a playground/IDE to work with graphQL queries. GraphQL is a
@@ -22,7 +22,7 @@ export const ProjectPage = () => {
         </div>
 
         <div className="project__left">
-          <div className="project__backend">
+          <div className="project__cards">
             <h2 className="project__caption">BACKEND</h2>
             <div className="project__text">
               It should also be noted that, according to the assignment, the application does not
@@ -32,7 +32,7 @@ export const ProjectPage = () => {
               the team that we will use the open API of GraphQL.
             </div>
           </div>
-          <div className="project__application">
+          <div className="project__cards">
             <h2 className="project__caption">APPLICATION-STRUCTURE</h2>
             <div className="project__text">
               <ul>
@@ -43,7 +43,7 @@ export const ProjectPage = () => {
               </ul>
             </div>
           </div>
-          <div className="project__stack">
+          <div className="project__cards">
             <h2 className="project__caption">STACK</h2>
             <div className="project__text">
               <ul>
