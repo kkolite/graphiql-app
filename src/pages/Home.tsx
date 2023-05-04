@@ -1,10 +1,11 @@
 import { ProjectPage } from '../components/section/project';
+import { CoursePage } from '../components/section/course';
 
 export const Home = () => {
   return (
     <>
       <ProjectPage />
-      <section className="main__course course"></section>
+      <CoursePage />
 
       <section className="main__developer developer"></section>
     </>
