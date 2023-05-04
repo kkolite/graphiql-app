@@ -12,9 +12,14 @@ import '../styles/json.scss';
 
 //https://spacex-production.up.railway.app/graphql
 
-async function startFetchUnnamedQuery(endpoint: string, query: string, name: string) {
+async function startFetchUnnamedQuery(
+  endpoint: string,
+  query: string,
+  name: string,
+  variable: Record<string, string | number>
+) {
   if (endpoint !== '' && query !== '') {
-    const { errors, data } = await fetchGraphQL(query, name, {}, endpoint);
+    const { errors, data } = await fetchGraphQL(query, name, variable, endpoint);
 
     if (errors) {
       return errors;
@@ -28,6 +33,7 @@ export const IDE = () => {
   const { endpoint } = useAppSelector((state) => state.endpoint);
   const [showDoc, setShowDoc] = useState(false);
   const [query, setQuery] = useState(operationsDoc);
+  const [variable, setVariable] = useState('');
   const [result, setResult] = useState('');
   const { t } = useTranslation();
   let lengthStr = '';
@@ -39,20 +45,27 @@ export const IDE = () => {
   const handelChangeQ = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setQuery(e.target.value);
   };
+  const handelChangeV = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setVariable(e.target.value);
+  };
 
   const handleClick = () => {
     if (endpoint !== '' && query !== '') {
       const userQuery = query.split('{');
       let queryPost = query;
-      const param = userQuery[0].trim().split(' ');
-      let paramName = param[1];
-      if (!(param.length === 2 && param[0] !== '' && param[1] !== '')) {
-        userQuery.shift();
-        paramName = 'MyQuery';
-        queryPost = `query ${paramName} { ${userQuery.join('{')}`;
-      }
+      // const str = userQuery[0].splice('(');
+      // if ()
+      // const param = userQuery[0].trim().split(' ');
+      // let paramName = param[1];
+      // if (!(param.length === 2 && param[0] !== '' && param[1] !== '')) {
+      //   userQuery.shift();
+      //   paramName = 'MyQuery';
+      //   queryPost = `query ${paramName} { ${userQuery.join('{')}`;
+      // }
       setQuery(queryPost);
-      const data = startFetchUnnamedQuery(endpoint, queryPost, paramName);
+      const variableObj: Record<string, string | number> = JSON.parse(variable);
+
+      const data = startFetchUnnamedQuery(endpoint, queryPost, 'Query', variableObj);
       data.then((item) => {
         setResult(JSON.stringify(item, null, 2));
       });
@@ -100,7 +113,7 @@ export const IDE = () => {
             name="story"
           ></textarea>
           <h2>Query Variables</h2>
-          <textarea rows={5} cols={45}></textarea>
+          <textarea onChange={handelChangeV} rows={5} cols={45}></textarea>
         </div>
         <JSONPretty className="graph__result" id="json-pretty" data={result}></JSONPretty>
       </div>

@@ -1,7 +1,7 @@
 export async function fetchGraphQL(
   operationsDoc: string,
   operationName: string,
-  variables: Record<string, unknown>,
+  variables: Record<string, string | number>,
   endpoint: string
 ) {
   const result = await fetch(endpoint, {
@@ -10,9 +10,9 @@ export async function fetchGraphQL(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      query: operationsDoc || {},
-      variables: variables,
-      operationName: operationName,
+      query: operationsDoc,
+      variables,
+      operationName,
     }),
   });
   return result.json();
