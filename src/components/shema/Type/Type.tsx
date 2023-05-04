@@ -1,11 +1,11 @@
-import { IQuery } from "../../../data/types";
+import { IQuery } from '../../../data/types';
 
 interface IProps {
-  obj: IQuery,
-  query: string
+  obj: IQuery;
+  query: string;
 }
 
-export const Type = ({obj, query}: IProps) => {
+export const Type = ({ obj, query }: IProps) => {
   return (
     <div>
       <h4>{query}</h4>
@@ -14,10 +14,12 @@ export const Type = ({obj, query}: IProps) => {
       <div>
         <label>Args</label>
         {obj[query].args.map((el, i) => (
-          <p key={i}>{el.name} ({el.type})</p>
+          <p key={i}>
+            {el.name} ({el.type})
+          </p>
         ))}
       </div>
-      <br/> {/* temp!!!!!! */}
+      <br /> {/* temp!!!!!! */}
     </div>
   );
 };

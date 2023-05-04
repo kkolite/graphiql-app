@@ -11,14 +11,14 @@ export enum EValidate {
 }
 
 interface IQueryType {
-  name: string,
-  description: string,
+  name: string;
+  description: string;
   args: {
-    name: string,
-    type: string
-  }[]
+    name: string;
+    type: string;
+  }[];
 }
 
 export interface IQuery {
-  [key: string]: IQueryType
+  [key: string]: IQueryType;
 }

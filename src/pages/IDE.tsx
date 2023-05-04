@@ -3,66 +3,36 @@ import JSONPretty from 'react-json-pretty';
 import { useTranslation } from 'react-i18next';
 
 import { Shema } from './../components/shema/Shema';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { setEndpoint } from '../store/slice/endpointSlice';
+import { fetchGraphQL } from '../api/api';
+import { operationsDoc } from '../data/variable';
 import '../styles/ide.scss';
 import '../styles/json.scss';
 
-//https://rickandmortyapi.com/graphql
 //https://spacex-production.up.railway.app/graphql
-async function fetchGraphQL(
-  operationsDoc: string,
-  operationName: string,
-  variables: Record<string, unknown>,
-  endpoint: string
-) {
-  const result = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: operationsDoc || {},
-      variables: variables,
-      operationName: operationName,
-    }),
-  });
-  return result.json();
-}
-
-const operationsDoc = `query MyQuery {
-    characters {
-      results {
-        image
-        id
-        gender
-        name
-      }
-    }
-  }
-`;
 
 async function startFetchUnnamedQuery(endpoint: string, query: string, name: string) {
-  if (endpoint === '') endpoint = 'https://rickandmortyapi.com/graphql';
   if (endpoint !== '' && query !== '') {
     const { errors, data } = await fetchGraphQL(query, name, {}, endpoint);
 
     if (errors) {
       return errors;
-    } else {
-      return data;
     }
+    return data;
   }
 }
 
 export const IDE = () => {
+  const dispatch = useAppDispatch();
+  const { endpoint } = useAppSelector((state) => state.endpoint);
   const [showDoc, setShowDoc] = useState(false);
-  const [endpoint, setEndpoint] = useState('');
   const [query, setQuery] = useState(operationsDoc);
-  const [queryName, setqueryName] = useState('');
   const [result, setResult] = useState('');
   const { t } = useTranslation();
 
   const handelChangeEP = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEndpoint(e.target.value);
+    dispatch(setEndpoint(e.target.value));
   };
   const handelChangeQ = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setQuery(e.target.value);
@@ -73,16 +43,11 @@ export const IDE = () => {
       const userQuery = query.split('{');
       let queryPost = query;
       const param = userQuery[0].trim().split(' ');
-      let paramName = '';
-      if (param.length === 2 && param[0] !== '' && param[1] !== '') {
-        paramName = param[1];
-        setqueryName(paramName);
-      } else {
+      let paramName = param[1];
+      if (!(param.length === 2 && param[0] !== '' && param[1] !== '')) {
         userQuery.shift();
-        setqueryName('MyQuery');
         paramName = 'MyQuery';
-        const str = userQuery.join('{');
-        queryPost =`query ${queryName} { ${str}`;
+        queryPost = `query ${paramName} { ${userQuery.join('{')}`;
       }
       setQuery(queryPost);
       const data = startFetchUnnamedQuery(endpoint, queryPost, paramName);
@@ -117,7 +82,7 @@ export const IDE = () => {
         </label>
         {showDoc && (
           <Suspense fallback={<div>Loading...</div>}>
-            <Shema endpoint={endpoint}></Shema>
+            <Shema></Shema>
           </Suspense>
         )}
       </div>
