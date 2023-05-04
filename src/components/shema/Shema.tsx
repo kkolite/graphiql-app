@@ -19,12 +19,11 @@ export const Shema = () => {
 
   return (
     <>
-      <h2>Documentation Explorer</h2>
       <button onClick={handleClick}>Get docs</button>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div id={`1`} className="modal">
+        <div className="modal">
           <Select />
           {keysArr.map((el, i) => (
             <Type obj={data} query={el} key={i} />
