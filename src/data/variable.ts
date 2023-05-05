@@ -9,3 +9,9 @@ export const operationsDoc = `query MyQuery {
     }
   }
 `;
+
+export const infostatus = {
+  resTime: '0.0',
+  resSize: 0,
+  status: true,
+};
