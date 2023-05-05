@@ -10,8 +10,6 @@ import { operationsDoc } from '../data/variable';
 import './ide.scss';
 import './json.scss';
 
-//https://spacex-production.up.railway.app/graphql
-
 async function startFetchUnnamedQuery(
   endpoint: string,
   query: string,
@@ -53,19 +51,21 @@ export const IDE = () => {
     if (endpoint !== '' && query !== '') {
       const userQuery = query.split('{');
       let queryPost = query;
-      // const str = userQuery[0].splice('(');
-      // if ()
-      // const param = userQuery[0].trim().split(' ');
-      // let paramName = param[1];
-      // if (!(param.length === 2 && param[0] !== '' && param[1] !== '')) {
-      //   userQuery.shift();
-      //   paramName = 'MyQuery';
-      //   queryPost = `query ${paramName} { ${userQuery.join('{')}`;
-      // }
+      const str = userQuery[0].split('(');
+      let param = [];
+      if (str.length > 1) param = str[0].trim().split(' ');
+      else param = userQuery[0].trim().split(' ');
+      let paramName = param[1];
+      if (!(param.length === 2 && param[0] !== '' && param[1] !== '')) {
+        userQuery.shift();
+        paramName = 'MyQuery';
+        queryPost = `query ${paramName} { ${userQuery.join('{')}`;
+      }
       setQuery(queryPost);
-      const variableObj: Record<string, string | number> = JSON.parse(variable);
+      let variableObj: Record<string, string | number> = {};
+      if (variable !== '') variableObj = JSON.parse(variable);
 
-      const data = startFetchUnnamedQuery(endpoint, queryPost, 'Query', variableObj);
+      const data = startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj);
       data.then((item) => {
         setResult(JSON.stringify(item, null, 2));
       });
