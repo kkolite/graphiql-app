@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setEndpoint } from '../store/slice/endpointSlice';
 import { fetchGraphQL } from '../api/api';
 import { operationsDoc } from '../data/variable';
-import '../styles/ide.scss';
-import '../styles/json.scss';
+import './ide.scss';
+import './json.scss';
 
 async function startFetchUnnamedQuery(
   endpoint: string,

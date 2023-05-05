@@ -8,7 +8,7 @@ import { setBtnSignIn, setBtnSignUp } from '../../store/slice/headerSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import logo from '../../assets/graphql.svg';
-import '../../styles/header.scss';
+import './header.scss';
 
 export const Header = () => {
   const [sticky, setSticky] = useState('');
@@ -33,7 +33,6 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    console.log('hello');
     window.addEventListener('scroll', isSticky);
     return () => {
       window.removeEventListener('scroll', isSticky);

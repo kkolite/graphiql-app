@@ -1,4 +1,4 @@
-import '../../styles/coursepage.scss';
+import './coursepage.scss';
 import course from '../../assets/course.webp';
 import cats from '../../assets/cats.png';
 import meow from '../../assets/cat-meow.mp3';
