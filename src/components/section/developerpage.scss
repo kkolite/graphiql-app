@@ -1,6 +1,9 @@
 .developer {
   position: relative;
-  &__container {}
+  &__container {
+    border-left: 1px solid crimson;
+    border-right: 1px solid crimson;
+  }
   &__title {
     text-align: center;
     font-weight: 600;
