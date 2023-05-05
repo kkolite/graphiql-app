@@ -118,11 +118,16 @@ export const IDE = () => {
           <h2>Query Variables</h2>
           <textarea onChange={handelChangeV} rows={5}></textarea>
         </div>
-        <div>
-          RESPONSE TIME {info.resTime} ms RESPONSE SIZE {info.resSize} bytes{' '}
-          {info.status ? 'GREEN' : 'RED'}
+        <div className="graph__result">
+          <div className="graph__status">
+            RESPONSE TIME <span className="graph__status-bold">{info.resTime}</span> ms RESPONSE
+            SIZE <span className="graph__status-bold">{info.resSize}</span> bytes{' '}
+            {(info.status && <div className="mdi-checkbox-marked-circle-outline"></div>) || (
+              <div className="mdi-close-circle-outline"></div>
+            )}
+          </div>
+          <JSONPretty className="graph__json" id="json-pretty" data={result}></JSONPretty>
         </div>
-        <JSONPretty className="graph__result" id="json-pretty" data={result}></JSONPretty>
       </div>
     </section>
   );
