@@ -41,7 +41,7 @@ export const Header = () => {
 
   const isSticky = () => {
     const scrollTop = window.scrollY;
-    const stickyClass = scrollTop >= 18 ? 'sticky' : '';
+    const stickyClass = scrollTop >= 60 ? 'sticky' : '';
     setSticky(stickyClass);
   };
 
