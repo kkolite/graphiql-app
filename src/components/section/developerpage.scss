@@ -1,0 +1,53 @@
+.developer {
+  position: relative;
+  &__container {}
+  &__title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 122%;
+    margin: 48px 0;
+  }
+  &__block {}
+  &__cards {
+    &:not(:last-child) {
+      margin: 0 0 40px 0;
+    }
+    @media (max-width: 2000px){
+      &:not(:first-child) {
+        width: calc(400px + 900 * ((100vw - 767.98px) / 1232));
+      }
+    }
+  }
+  &__chapter {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 122%;
+    text-transform: uppercase;
+    margin: 0 0 21px 0;
+  }
+  &__caption {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 122%;
+    text-transform: uppercase;
+    background: #FAEA68;
+    padding: 4px 11px;
+    margin: 0 0 21px 0;
+  }
+  &__text {
+    line-height: 125%;
+  }
+
+  &__fon-cats {
+    & img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      object-fit: cover;
+      object-position: center;
+      z-index: -1;
+    }
+  }
+}
