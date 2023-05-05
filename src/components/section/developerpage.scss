@@ -8,13 +8,15 @@
     line-height: 122%;
     margin: 48px 0;
   }
-  &__block {}
+  &__block {
+    padding: 0 0 40px 0;
+  }
   &__cards {
     &:not(:last-child) {
       margin: 0 0 40px 0;
     }
     @media (max-width: 2000px){
-      &:not(:first-child) {
+      &:nth-last-child(-n+3) {
         width: calc(400px + 900 * ((100vw - 767.98px) / 1232));
       }
     }

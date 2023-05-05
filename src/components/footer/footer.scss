@@ -1,0 +1,27 @@
+.footer {
+   border-top: 1px solid #C8945D;
+   &__box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   &__github {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+   }
+   &__copywrite {
+      align-self: end;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 116%;
+   }
+   &__rsschool {}
+   &__project {}
+   &__link {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: underline;
+   }
+}
