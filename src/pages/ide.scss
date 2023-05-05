@@ -46,6 +46,9 @@
       width: 50%;
       overflow: auto;
       border: 1px solid #D3D4D5;
+      & textarea {
+         width: 100%;
+      }
    }
    &__result {
       width: 50%;
