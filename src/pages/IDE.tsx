@@ -6,7 +6,7 @@ import { Shema } from './../components/shema/Shema';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setEndpoint } from '../store/slice/endpointSlice';
 import { fetchGraphQL } from '../api/api';
-import { operationsDoc } from '../data/variable';
+import { operationsDoc, infostatus } from '../data/variable';
 import '../styles/ide.scss';
 import '../styles/json.scss';
 
@@ -17,11 +17,7 @@ async function startFetchUnnamedQuery(
   variable: Record<string, string | number>
 ) {
   if (endpoint !== '' && query !== '') {
-    const { errors, data } = await fetchGraphQL(query, name, variable, endpoint);
-
-    if (errors) {
-      return errors;
-    }
+    const data = await fetchGraphQL(query, name, variable, endpoint);
     return data;
   }
 }
@@ -33,9 +29,15 @@ export const IDE = () => {
   const [query, setQuery] = useState(operationsDoc);
   const [variable, setVariable] = useState('');
   const [result, setResult] = useState('');
+  const [info, setInfo] = useState(infostatus);
   const { t } = useTranslation();
   let lengthStr = '';
-  for (let i = 1; i < query.split(/\r\n|\r|\n/).length + 1; i += 1) lengthStr += `${i}\r\n`;
+  let colrow = 35;
+  const countStr = query.split(/\r\n|\r|\n/).length;
+  for (let i = 1; i < countStr + 1; i += 1) {
+    lengthStr += `${i}\r\n`;
+    if (countStr > colrow) colrow = countStr;
+  }
 
   const handelChangeEP = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(e.target.value));
@@ -64,10 +66,17 @@ export const IDE = () => {
       setQuery(queryPost);
       let variableObj: Record<string, string | number> = {};
       if (variable !== '') variableObj = JSON.parse(variable);
-
+      const date = performance.now();
       const data = startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj);
       data.then((item) => {
-        setResult(JSON.stringify(item, null, 2));
+        const resFormat = JSON.stringify(item, null, 2);
+        setResult(resFormat);
+        let status = true;
+        if (item.errors) status = false;
+        const date2 = performance.now();
+        const resTime = date2 - date;
+        const resSize = resFormat.length;
+        setInfo({ resTime: resTime.toFixed(1), resSize: resSize, status: status });
       });
     }
   };
@@ -105,15 +114,13 @@ export const IDE = () => {
       <div className="graph__edit">
         <div className="graph__count">{lengthStr}</div>
         <div className="graph__value">
-          <textarea
-            value={query}
-            onChange={handelChangeQ}
-            rows={35}
-            cols={45}
-            name="story"
-          ></textarea>
+          <textarea value={query} onChange={handelChangeQ} rows={colrow} name="story"></textarea>
           <h2>Query Variables</h2>
-          <textarea onChange={handelChangeV} rows={5} cols={45}></textarea>
+          <textarea onChange={handelChangeV} rows={5}></textarea>
+        </div>
+        <div>
+          RESPONSE TIME {info.resTime} ms RESPONSE SIZE {info.resSize} bytes{' '}
+          {info.status ? 'GREEN' : 'RED'}
         </div>
         <JSONPretty className="graph__result" id="json-pretty" data={result}></JSONPretty>
       </div>
