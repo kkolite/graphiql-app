@@ -10,6 +10,9 @@
       align-items: center;
       gap: 1rem;
    }
+   &__header {
+      display: flex;
+   }
    &__intpoint {
       width: 100%;
       height: 36px;

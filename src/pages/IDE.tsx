@@ -6,6 +6,7 @@ import { Shema } from './../components/shema/Shema';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setEndpoint } from '../store/slice/endpointSlice';
 import { fetchGraphQL } from '../api/api';
+import { RHeaders } from '../components/Reqheaders/Reqheaders';
 import { operationsDoc, infostatus } from '../data/variable';
 import './ide.scss';
 import './json.scss';
@@ -98,6 +99,9 @@ export const IDE = () => {
           {t('SEND')}
         </div>
       </div>
+      <div className="graph__header">
+        <RHeaders></RHeaders>
+      </div>
 
       <div className="graph__docs">
         <label>
@@ -119,13 +123,15 @@ export const IDE = () => {
           <textarea onChange={handelChangeV} rows={5}></textarea>
         </div>
         <div className="graph__result">
-          <div className="graph__status">
-            RESPONSE TIME <span className="graph__status-bold">{info.resTime}</span> ms RESPONSE
-            SIZE <span className="graph__status-bold">{info.resSize}</span> bytes{' '}
-            {(info.status && <div className="mdi-checkbox-marked-circle-outline"></div>) || (
-              <div className="mdi-close-circle-outline"></div>
-            )}
-          </div>
+          {result && (
+            <div className="graph__status">
+              {t('resTime')} <span className="graph__status-bold">{info.resTime}</span> {t('ms')}{' '}
+              {t('resSize')} <span className="graph__status-bold">{info.resSize}</span> {t('bytes')}{' '}
+              {(info.status && <div className="mdi-checkbox-marked-circle-outline"></div>) || (
+                <div className="mdi-close-circle-outline"></div>
+              )}
+            </div>
+          )}
           <JSONPretty className="graph__json" id="json-pretty" data={result}></JSONPretty>
         </div>
       </div>

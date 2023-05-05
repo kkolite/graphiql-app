@@ -61,7 +61,7 @@ export const Header = () => {
             {t('pageHome')}
           </NavLink>
           <NavLink className="nav__item" to={EPages.IDE}>
-            GraphQL
+            {t('pageIDE')}
           </NavLink>
           <NavLink className="nav__item" to={EPages.LOGIN}>
             {t('pageLogin')}

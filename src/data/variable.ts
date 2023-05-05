@@ -15,3 +15,9 @@ export const infostatus = {
   resSize: 0,
   status: true,
 };
+export interface IRequestHeaders {
+  key: string;
+  value: string;
+}
+
+export const reqHeaders: IRequestHeaders[] = [{ key: 'content-type', value: 'application/json' }];
