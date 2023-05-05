@@ -1,4 +1,4 @@
-import '../../styles/projectpage.scss';
+import './projectpage.scss';
 
 export const ProjectPage = () => {
   return (
