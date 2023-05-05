@@ -56,8 +56,15 @@ export const CoursePage = () => {
             <div className="course__cards">
               <h2 className="course__caption">LEARNING-MATERIALS</h2>
               <div className="course__text">
-                School’s documentation - https://docs.rs.school You can find all materials on the
-                YouTube channel.
+                School’s documentation - {` `}
+                <a href="https://docs.rs.school" target="_blank">
+                  https://docs.rs.school
+                </a>
+                . You can find all materials on the {` `}
+                <a href="https://www.youtube.com/c/RollingScopesSchool" target="_blank">
+                  YouTube
+                </a>
+                {` `} channel.
               </div>
             </div>
             <div className="course__cards">
