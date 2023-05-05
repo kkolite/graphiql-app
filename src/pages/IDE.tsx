@@ -6,7 +6,7 @@ import { Shema } from './../components/shema/Shema';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setEndpoint } from '../store/slice/endpointSlice';
 import { fetchGraphQL } from '../api/api';
-import { RHeaders } from '../components/Reqheaders/Reqheaders';
+import { RHeaders } from '../components/reqheaders/Reqheaders';
 import { operationsDoc, infostatus } from '../data/variable';
 import './ide.scss';
 import './json.scss';
