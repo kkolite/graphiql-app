@@ -11,6 +11,7 @@ import { operationsDoc, infostatus } from '../data/variable';
 import './ide.scss';
 import './json.scss';
 import { getSchema } from '../store/slice/querySlice';
+import { createQuery, getResults } from '../utils/createQuery';
 
 async function startFetchUnnamedQuery(
   endpoint: string,
@@ -52,36 +53,22 @@ export const IDE = () => {
   };
 
   const handleClick = () => {
-    if (endpoint !== '' && query !== '') {
-      const userQuery = query.split('{');
-      let queryPost = query;
-      const str = userQuery[0].split('(');
-      let param = [];
-      if (str.length > 1) param = str[0].trim().split(' ');
-      else param = userQuery[0].trim().split(' ');
-      let paramName = param[1];
-      if (!(param.length === 2 && param[0] !== '' && param[1] !== '')) {
-        userQuery.shift();
-        paramName = 'MyQuery';
-        queryPost = `query ${paramName} { ${userQuery.join('{')}`;
-      }
-      setQuery(queryPost);
-      let variableObj: Record<string, string | number> = {};
-      if (variable !== '') variableObj = JSON.parse(variable);
-      const date = performance.now();
-      const data = startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj);
-      data.then((item) => {
-        const resFormat = JSON.stringify(item, null, 2);
-        setResult(resFormat);
-        let status = true;
-        if (item.errors) status = false;
-        const date2 = performance.now();
-        const resTime = date2 - date;
-        const resSize = resFormat.length;
-        setInfo({ resTime: resTime.toFixed(1), resSize: resSize, status: status });
-      });
-      dispatch(getSchema(endpoint));
-    }
+    if (endpoint === '' && query === '') return;
+
+    const [queryPost, paramName] = createQuery(query);
+    setQuery(queryPost);
+
+    const variableObj: Record<string, string | number> = variable ? JSON.parse(variable) : {};
+
+    const start = performance.now();
+
+    startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj).then((item) => {
+      const { format, size, status, time } = getResults(item, start);
+      setResult(format);
+      setInfo({ resTime: time.toFixed(1), resSize: size, status: status });
+    });
+
+    dispatch(getSchema(endpoint));
   };
 
   return (
