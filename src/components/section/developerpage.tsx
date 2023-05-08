@@ -45,8 +45,10 @@ export const DeveloperPage = () => {
           </div>
         </div>
       </div>
-      <div className="developer__fon-cats">
-        <img src={catsfull} alt="he cat's smile" />
+      <div className="developer__cats-box __container">
+        <div className="developer__fon-cats">
+          <img src={catsfull} alt="he cat's smile" />
+        </div>
       </div>
     </section>
   );
