@@ -16,5 +16,7 @@
 	"resTime": "RESPONSE TIME",
 	"resSize": " RESPONSE SIZE",
 	"ms": "ms",
-	"bytes": "bytes "
+	"bytes": "bytes ",
+	"empty": "No Schema :(",
+	"loading": "Loading..."
 }

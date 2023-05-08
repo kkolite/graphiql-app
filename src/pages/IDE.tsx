@@ -10,6 +10,7 @@ import { RHeaders } from '../components/reqheaders/Reqheaders';
 import { operationsDoc, infostatus } from '../data/variable';
 import './ide.scss';
 import './json.scss';
+import { getSchema } from '../store/slice/querySlice';
 
 async function startFetchUnnamedQuery(
   endpoint: string,
@@ -79,6 +80,7 @@ export const IDE = () => {
         const resSize = resFormat.length;
         setInfo({ resTime: resTime.toFixed(1), resSize: resSize, status: status });
       });
+      dispatch(getSchema(endpoint));
     }
   };
 

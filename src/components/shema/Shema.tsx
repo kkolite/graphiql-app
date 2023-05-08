@@ -1,35 +1,33 @@
-import { IQuery } from '../../data/types';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getSchema } from '../../store/slice/querySlice';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '../../store/hooks';
+
 import { Select } from './Select/Select';
 import { Type } from './Type/Type';
+import styles from './Schema.module.scss';
 
 export const Shema = () => {
   const data = useAppSelector((store) => store.query.data);
   const isLoading = useAppSelector((store) => store.query.isLoading);
-  const { endpoint } = useAppSelector((state) => state.endpoint);
-  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const keysArr = Object.keys(data);
-  //temp
-
-  const handleClick = () => {
-    dispatch(getSchema(endpoint));
-  };
 
   return (
-    <>
-      <button onClick={handleClick}>Get docs</button>
+    <div className={styles.container}>
       {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="modal">
+        <p>{t('loading')}</p>
+      ) : keysArr.length ? (
+        <>
           <Select />
-          {keysArr.map((el, i) => (
-            <Type obj={data} query={el} key={i} />
-          ))}
-        </div>
+          <div className={styles.list}>
+            {keysArr.map((el, i) => (
+              <Type obj={data} query={el} key={i} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <p>{t('empty')}</p>
       )}
-    </>
+    </div>
   );
 };
