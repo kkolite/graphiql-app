@@ -1,0 +1,17 @@
+@mixin flexColumn($n) {
+  display: flex;
+  flex-direction: column;
+  gap: $n
+}
+
+.container {
+  padding: 30px 0;
+  @include flexColumn(20px);
+}
+
+.list {
+  //@include flexColumn(10px); 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
