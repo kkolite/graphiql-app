@@ -12,13 +12,11 @@
     padding: 0 0 40px 0;
   }
   &__cards {
+    &:nth-last-child(-n+3) {
+      width: 960px;
+    }
     &:not(:last-child) {
       margin: 0 0 40px 0;
-    }
-    @media (max-width: 2000px){
-      &:nth-last-child(-n+3) {
-        width: calc(400px + 900 * ((100vw - 767.98px) / 1232));
-      }
     }
   }
   &__chapter {
@@ -46,10 +44,13 @@
     & img {
       position: absolute;
       bottom: 0;
-      right: 0;
+      right: -736px;
       object-fit: cover;
       object-position: center;
       z-index: -1;
     }
+  }
+  &__cats-box {
+    position: relative;
   }
 }

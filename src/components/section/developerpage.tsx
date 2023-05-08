@@ -1,5 +1,6 @@
 import './developerpage.scss';
 import cats from '../../assets/cats.jpg';
+import catsfull from '../../assets/catsfull.jpg';
 
 export const DeveloperPage = () => {
   return (
@@ -44,8 +45,10 @@ export const DeveloperPage = () => {
           </div>
         </div>
       </div>
-      <div className="developer__fon-cats">
-        <img src={cats} alt="he cat's smile" />
+      <div className="developer__cats-box __container">
+        <div className="developer__fon-cats">
+          <img src={catsfull} alt="he cat's smile" />
+        </div>
       </div>
     </section>
   );
