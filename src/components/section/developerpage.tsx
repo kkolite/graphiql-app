@@ -1,5 +1,4 @@
 import './developerpage.scss';
-import cats from '../../assets/cats.jpg';
 import catsfull from '../../assets/catsfull.jpg';
 
 export const DeveloperPage = () => {
