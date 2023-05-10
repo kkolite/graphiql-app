@@ -2,7 +2,7 @@ import { AnyAction, createAsyncThunk, createSlice, PayloadAction } from '@reduxj
 import { IQuery } from '../../data/types';
 import { buildHTTPExecutor } from '@graphql-tools/executor-http';
 import { schemaFromExecutor } from '@graphql-tools/wrap';
-import { GraphQLFieldConfigMap, GraphQLFieldMap, parse } from 'graphql';
+import { GraphQLFieldConfigMap, GraphQLFieldMap } from 'graphql';
 import { createObj } from '../../utils/createObj';
 
 interface IState {

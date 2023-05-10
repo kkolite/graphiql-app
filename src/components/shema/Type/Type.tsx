@@ -21,7 +21,20 @@ export const Type = ({ obj, query }: IProps) => {
           ))}
         </ul>
       </div>
-      <br /> {/* temp!!!!!! */}
+      <div className={styles.args}>
+        <label className={styles.args__label}>Fields:</label>
+        <ul className={styles.list}>
+          {
+            obj[query].fields.length
+            ? obj[query].fields.map((el, i) => (
+                <li key={i} className={styles.li}>
+                  {el}
+                </li>
+              ))
+            : <p>-</p>
+            }
+        </ul>
+      </div>
     </div>
   );
 };
