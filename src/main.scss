@@ -166,8 +166,10 @@ h6 {
   & + .main {
     margin-top: 64px;
   }
+  @media (max-width: 767.98px){
+    padding: 8px 15px;
+  }
 }
-
 
 .main {
   width: 100%;
