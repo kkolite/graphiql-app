@@ -1,6 +1,7 @@
 import './footer.scss';
 import rsschool from '../../assets/rs_shool.svg';
 import github from '../../assets/github.png';
+import cats from '../../assets/fcats.png';
 
 export const Footer = () => {
   return (
@@ -14,12 +15,15 @@ export const Footer = () => {
           </div>
           <div className="footer__link">
             <a href="https://github.com/kkolite" target="_blank">
+              <img src={cats} alt="" />
               kkolite
             </a>
             <a href="https://github.com/koctia" target="_blank">
+              <img src={cats} alt="" />
               koctia
             </a>
             <a href="https://github.com/motoblock" target="_blank">
+              <img src={cats} alt="" />
               motoblock
             </a>
           </div>

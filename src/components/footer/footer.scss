@@ -14,9 +14,13 @@
    &__project {}
    &__link {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      flex-wrap: wrap;
+      gap: 14px;
       text-decoration: underline;
+      & img {
+         width: 20px;
+         margin: 0 5px 0 0;
+      }
    }
    &__copywrite {
       display: flex;
