@@ -47,21 +47,28 @@ export const Login = () => {
         <div className="modal__close">
           <div onClick={handleClick}>X</div>
         </div>
-
+        <div className="modal__name">Sign in</div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
-            <label>{emailError}</label>
+          <div className="modal__text-input">
+            <label>
+              your email
+              <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+            </label>
+            <div className="modal__error">{emailError}</div>
           </div>
-          <div>
-            <input
-              type="password"
-              placeholder={t('password') as string}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label>{passwordError}</label>
+
+          <div className="modal__text-input">
+            <label>
+              your password
+              <input
+                type="password"
+                placeholder={t('password') as string}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <div className="modal__error">{passwordError}</div>
           </div>
-          <button>{t('logIn')}</button>
+          <button className="modal__btn">{t('logIn')}</button>
         </form>
       </div>
     </div>

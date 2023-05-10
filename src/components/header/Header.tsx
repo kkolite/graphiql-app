@@ -64,9 +64,6 @@ export const Header = () => {
           <NavLink className="nav__item" to={EPages.IDE}>
             {t('pageIDE')}
           </NavLink>
-          <NavLink className="nav__item" to={EPages.LOGIN}>
-            {t('pageLogin')}
-          </NavLink>
         </nav>
 
         <div className="header__btn-box">
