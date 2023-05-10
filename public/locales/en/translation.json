@@ -5,6 +5,7 @@
 	"password": "Password",
 	"logIn": "Log In",
 	"createAccount": "Create Account",
+	"save": "Save",
 	"name": "Name",
 	"EMAIL": "Invalid Email",
 	"PASSWORD": "Invalid Password",
@@ -18,5 +19,10 @@
 	"ms": "ms",
 	"bytes": "bytes ",
 	"empty": "No Schema :(",
-	"loading": "Loading..."
+	"loading": "Loading...",
+	"request": "Request Headers",
+	"key": "KEY",
+	"value": "VALUE",
+	"inputKey": "Enter Key",
+	"inputValue": "Enter Value"
 }

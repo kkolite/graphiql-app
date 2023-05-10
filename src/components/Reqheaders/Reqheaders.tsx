@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import './reqheaders.scss';
 import { setreqHeaders } from '../../store/slice/reqheadersSlice';
@@ -8,6 +10,7 @@ export const RHeaders = () => {
   const { itemsVal } = useAppSelector((state) => state.reqHeaders);
   const [key, setKey] = useState('');
   const [val, setValue] = useState('');
+  const { t } = useTranslation();
 
   const handelChangeKey = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKey(e.target.value);
@@ -25,12 +28,12 @@ export const RHeaders = () => {
 
   return (
     <>
-      <h2>Request Headers</h2>
+      <h2>{t('request')}</h2>
       <table className="requestHeader">
         <thead className="requestHeader thead">
           <tr>
-            <th>KEY</th>
-            <th>VALUE</th>
+            <th>{t('key')}</th>
+            <th>{t('value')}</th>
             <th></th>
           </tr>
         </thead>
@@ -46,14 +49,14 @@ export const RHeaders = () => {
           })}
           <tr>
             <td>
-              <input placeholder="Enter Key" onChange={handelChangeKey} />
+              <input placeholder={t('inputKey') as string} onChange={handelChangeKey} />
             </td>
             <td>
-              <input placeholder="Enter Value" onChange={handelChangeVal} />
+              <input placeholder={t('inputValue') as string} onChange={handelChangeVal} />
             </td>
             <td>
               <button className="graph__btn-endpoint" onClick={handleClick}>
-                Save
+                {t('save')}
               </button>
             </td>
           </tr>
