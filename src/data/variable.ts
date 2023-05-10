@@ -20,4 +20,4 @@ export interface IRequestHeaders {
   value: string;
 }
 
-export const reqHeaders: IRequestHeaders[] = [{ key: 'content-type', value: 'application/json' }];
+export const reqHeaders: IRequestHeaders[] = [{ key: 'Content-type', value: 'application/json' }];

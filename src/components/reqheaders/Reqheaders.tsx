@@ -20,10 +20,11 @@ export const RHeaders = () => {
   };
 
   const handleClick = () => {
-    console.log(1);
-    dispatch(setreqHeaders(itemsVal.concat({ key: key, value: val })));
-    setKey('');
-    setValue('');
+    if (key !== '' && val !== '') {
+      dispatch(setreqHeaders(itemsVal.concat({ key: key, value: val })));
+      setKey('');
+      setValue('');
+    }
   };
 
   return (
