@@ -2,13 +2,12 @@ export async function fetchGraphQL(
   operationsDoc: string,
   operationName: string,
   variables: Record<string, string | number>,
-  endpoint: string
+  endpoint: string,
+  header: HeadersInit
 ) {
   const result = await fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: header,
     body: JSON.stringify({
       query: operationsDoc,
       variables,

@@ -17,10 +17,11 @@ async function startFetchUnnamedQuery(
   endpoint: string,
   query: string,
   name: string,
-  variable: Record<string, string | number>
+  variable: Record<string, string | number>,
+  header: HeadersInit
 ) {
   if (endpoint !== '' && query !== '') {
-    const data = await fetchGraphQL(query, name, variable, endpoint);
+    const data = await fetchGraphQL(query, name, variable, endpoint, header);
     return data;
   }
 }
@@ -28,6 +29,7 @@ async function startFetchUnnamedQuery(
 export const IDE = () => {
   const dispatch = useAppDispatch();
   const { endpoint } = useAppSelector((state) => state.endpoint);
+  const { itemsVal } = useAppSelector((state) => state.reqHeaders);
   const [showDoc, setShowDoc] = useState(false);
   const [query, setQuery] = useState(operationsDoc);
   const [variable, setVariable] = useState('');
@@ -62,7 +64,16 @@ export const IDE = () => {
 
     const start = performance.now();
 
-    startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj).then((item) => {
+    let head: HeadersInit = {};
+    itemsVal.forEach((item: object) => {
+      const parsHeaader = JSON.parse(JSON.stringify(item));
+
+      head = JSON.parse(
+        JSON.stringify(Object.assign(head, { [parsHeaader.key]: parsHeaader.value }))
+      );
+    });
+    console.log('head', head);
+    startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj, head).then((item) => {
       const { format, size, status, time } = getResults(item, start);
       setResult(format);
       setInfo({ resTime: time.toFixed(1), resSize: size, status: status });
