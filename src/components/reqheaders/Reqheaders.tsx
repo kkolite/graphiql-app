@@ -44,7 +44,9 @@ export const RHeaders = () => {
               <tr key={item.key}>
                 <td>{item.key}</td>
                 <td>{item.value}</td>
-                <td>x</td>
+                <td>
+                  <span className="dell">&times;</span>
+                </td>
               </tr>
             );
           })}
