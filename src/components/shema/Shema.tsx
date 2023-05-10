@@ -19,10 +19,12 @@ export const Shema = () => {
       ) : keysArr.length ? (
         <>
           <Select />
-          <div className={styles.list}>
-            {keysArr.map((el, i) => (
-              <Type obj={data} query={el} key={i} />
-            ))}
+          <div className={styles.list__block}>
+            <div className={styles.list}>
+              {keysArr.map((el, i) => (
+                <Type obj={data} query={el} key={i} />
+              ))}
+            </div>
           </div>
         </>
       ) : (
