@@ -98,7 +98,7 @@ export const IDE = () => {
           Show Doc
         </label>
         {showDoc && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>{t('loading')}</div>}>
             <Shema></Shema>
           </Suspense>
         )}
