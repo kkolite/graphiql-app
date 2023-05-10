@@ -9,4 +9,3 @@ export const createObj = (item: GraphQLFieldMap<unknown, unknown>) => {
   }
   return result;
 }
-

@@ -10,8 +10,26 @@
 }
 
 .list {
-  //@include flexColumn(10px); 
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
+  width: max-content;
+  margin-bottom: 10px;
+
+  &__block {
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      width: 24px;
+      height: 8px; 
+      background-color: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #A545B1;
+        border-radius: 9em;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #be2cd1;
+    }
+  }
 }

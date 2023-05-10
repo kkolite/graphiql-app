@@ -10,9 +10,7 @@ interface IState {
   data: IQuery;
   schema: GraphQLFieldConfigMap<unknown, unknown> | undefined;
   select: string;
-  link: string;
   isLoading: boolean;
-  isError: boolean;
 }
 
 const initialState: IState = {
@@ -20,33 +18,25 @@ const initialState: IState = {
   data: {},
   schema: undefined,
   select: '',
-  link: '',
   isLoading: false,
-  isError: false,
 };
 
 export const getSchema = createAsyncThunk('data/fetchSchema', async (link: string) => {
   let result: IQuery | null = null;
-  let isError = false;
-  try {
-    const remoteExecutor = buildHTTPExecutor({
-      endpoint: link,
-    });
 
-    const postsSubschema = {
-      schema: await schemaFromExecutor(remoteExecutor),
-      executor: remoteExecutor,
-    };
-    
-    const schema = postsSubschema.schema.getQueryType()?.getFields() as GraphQLFieldMap<unknown, unknown>;
-    result = createObj(schema);
-    console.log(result);
-     
-  } catch {
-    isError = true;
-  }
+  const remoteExecutor = buildHTTPExecutor({
+    endpoint: link,
+  });
 
-  return { isError, result, link };
+  const postsSubschema = {
+    schema: await schemaFromExecutor(remoteExecutor),
+    executor: remoteExecutor,
+  };
+
+  const schema = postsSubschema.schema.getQueryType()?.getFields() as GraphQLFieldMap<unknown, unknown>;
+  result = createObj(schema);
+
+  return result;
 });
 
 const querySlice = createSlice({
@@ -67,17 +57,17 @@ const querySlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getSchema.fulfilled, (state, action) => {
-        const { isError, result, link } = action.payload;
+        const result = action.payload;
         state.isLoading = false;
-        state.isError = isError;
-        state.link = link;
         if (!result) return;
 
         state.origin = result;
         state.data = result;
       })
       .addMatcher(isError, (state) => {
-        state.isError = true;
+        state.isLoading = false;
+        state.data = {};
+        state.origin = {};
       });
   },
 });
