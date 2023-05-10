@@ -12,10 +12,10 @@ import './header.scss';
 
 export const Header = () => {
   const [sticky, setSticky] = useState('');
-  console.log(i18next.languages);
   const dispatch = useAppDispatch();
   const { isSignIn, isSignUp } = useAppSelector((state) => state.headers);
   const { t, i18n } = useTranslation();
+  const langLength = i18next.languages.length;
 
   const changeLang = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -80,8 +80,12 @@ export const Header = () => {
             </button>
           </div>
           <div className="header__lang">
-            <button onClick={() => changeLang('en')}>EN</button>
-            <button onClick={() => changeLang('ru')}>RU</button>
+            <button className={langLength !== 1 ? 'active' : ''} onClick={() => changeLang('en')}>
+              EN
+            </button>
+            <button className={langLength === 1 ? 'active' : ''} onClick={() => changeLang('ru')}>
+              RU
+            </button>
           </div>
         </div>
       </div>
