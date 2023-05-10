@@ -8,6 +8,7 @@ import { setBtnSignIn, setBtnSignUp } from '../../store/slice/headerSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import logo from '../../assets/graphql.svg';
+import { Modal } from '../';
 import './header.scss';
 
 export const Header = () => {
@@ -69,8 +70,8 @@ export const Header = () => {
         </nav>
 
         <div className="header__btn-box">
-          {isSignIn && <div>Sign in</div>}
-          {isSignUp && <div>Sign up</div>}
+          {isSignIn && <Modal />}
+          {isSignUp && <Modal />}
           <div className="header__sign">
             <button className={isSignIn ? 'header__active' : ''} onClick={() => changeSign('in')}>
               Sign in
