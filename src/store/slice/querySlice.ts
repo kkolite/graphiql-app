@@ -2,10 +2,13 @@ import { AnyAction, createAsyncThunk, createSlice, PayloadAction } from '@reduxj
 import { IQuery } from '../../data/types';
 import { buildHTTPExecutor } from '@graphql-tools/executor-http';
 import { schemaFromExecutor } from '@graphql-tools/wrap';
+import { GraphQLFieldConfigMap, GraphQLFieldMap } from 'graphql';
+import { createObj } from '../../utils/createObj';
 
 interface IState {
   origin: IQuery;
   data: IQuery;
+  schema: GraphQLFieldConfigMap<unknown, unknown> | undefined;
   select: string;
   link: string;
   isLoading: boolean;
@@ -15,6 +18,7 @@ interface IState {
 const initialState: IState = {
   origin: {},
   data: {},
+  schema: undefined,
   select: '',
   link: '',
   isLoading: false,
@@ -33,9 +37,11 @@ export const getSchema = createAsyncThunk('data/fetchSchema', async (link: strin
       schema: await schemaFromExecutor(remoteExecutor),
       executor: remoteExecutor,
     };
-
-    const fields = postsSubschema.schema.getQueryType()?.getFields();
-    result = JSON.parse(JSON.stringify(fields));
+    
+    const schema = postsSubschema.schema.getQueryType()?.getFields() as GraphQLFieldMap<unknown, unknown>;
+    result = createObj(schema);
+    console.log(result);
+     
   } catch {
     isError = true;
   }

@@ -24,5 +24,7 @@
 	"key": "KEY",
 	"value": "VALUE",
 	"inputKey": "Enter Key",
-	"inputValue": "Enter Value"
+	"inputValue": "Enter Value",
+	"args": "Args",
+	"fields": "Fields"
 }
