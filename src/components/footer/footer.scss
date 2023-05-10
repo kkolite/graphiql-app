@@ -10,12 +10,6 @@
       align-items: center;
       gap: 14px;
    }
-   &__copywrite {
-      align-self: end;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 116%;
-   }
    &__rsschool {}
    &__project {}
    &__link {
@@ -23,5 +17,14 @@
       flex-direction: column;
       gap: 6px;
       text-decoration: underline;
+   }
+   &__copywrite {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 116%;
+      height: 28px;
    }
 }

@@ -24,12 +24,14 @@ export const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="footer__copywrite">RS-GraphQL © 2023 All rights reserved.</div>
         <div className="footer__rsschool">
           <a href="https://rs.school/react/" target="_blank">
             <img src={rsschool} alt="" />
           </a>
         </div>
+      </div>
+      <div className="footer__copywrite footer__container">
+        RS-GraphQL © 2023 All rights reserved.
       </div>
     </footer>
   );

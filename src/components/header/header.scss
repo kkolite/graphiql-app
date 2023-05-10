@@ -1,11 +1,23 @@
 .header {
   border-bottom: 1px solid #C8945D;
+  @media (max-width: 767.98px){
+    padding: 14px 15px;
+  }
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 575.98px){
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
   }
-  &__logo {}
+  &__logo {
+    @media (max-width: 767.98px){
+      display: none;
+    }
+  }
   &__menu {}
   &__btn-box {
     display: flex;
@@ -13,6 +25,7 @@
     gap: 2rem;
   }
   &__sign {
+    display: flex;
     & button {
       width: 91px;
       height: 28px;
@@ -29,6 +42,7 @@
     }
   }
   &__lang {
+    display: flex;
     & button {
       position: relative;
       &:hover {
