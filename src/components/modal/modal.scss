@@ -1,0 +1,29 @@
+.modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(0, 0, 0, 0.6);
+   z-index: 11;
+   &__box {
+      width: 48rem;
+      font-size: 18px;
+      border: 1px solid #d3d4d5;
+      border-radius: 5px 5px 0 0;
+      background: #ffffff;
+      padding: 11px 18px 24px;
+   }
+   &__close {}
+   &__block {}
+   &__info {}
+   &__name {}
+   &__text {}
+   &__username {}
+   &__email {}
+   &__password {}
+   &__btn {}
+}
