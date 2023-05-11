@@ -3,6 +3,9 @@
   font-weight: 500;
   cursor: pointer;
   margin: 0 0 14px 0;
+  &:hover {
+    color: #F75A1B;
+  }
   &.close {
     &:before {
       font-family: "DesignIcons";
@@ -49,7 +52,7 @@
     text-align: center;
     cursor: pointer;
     &:hover {
-      color: crimson;
+      color: #F75A1B;
     }
   }
 }
