@@ -104,15 +104,26 @@ export const IDE = () => {
       </div>
 
       <div className="graph__docs">
-        <label>
-          <input type="checkbox" checked={showDoc} onChange={(e) => setShowDoc(e.target.checked)} />
-          Show Doc
-        </label>
-        {showDoc && (
-          <Suspense fallback={<div>{t('loading')}</div>}>
-            <Shema></Shema>
-          </Suspense>
-        )}
+        <div className="graph__show graph__show_action">
+          <label>
+            <input
+              type="checkbox"
+              checked={showDoc}
+              onChange={(e) => setShowDoc(e.target.checked)}
+              value="1"
+            />
+            <div>Show Doc</div>
+          </label>
+        </div>
+        <div className="graph__shema">
+          <div>
+            {showDoc && (
+              <Suspense fallback={<div>{t('loading')}</div>}>
+                <Shema></Shema>
+              </Suspense>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="graph__edit">
