@@ -13,7 +13,6 @@ export const RHeaders = () => {
   const [key, setKey] = useState('');
   const [val, setValue] = useState('');
   const [isTable, setShow] = useState(false);
-  const [znak, setZnak] = useState(' > ');
   const { t } = useTranslation();
 
   const handelChangeKey = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,34 +47,31 @@ export const RHeaders = () => {
 
   const tableShow = () => {
     if (!isTable) {
-      setZnak(' ∨ ');
       setShow(true);
     } else {
-      setZnak(' > ');
       setShow(false);
     }
   };
 
+  const classShotTable = isTable ? `showTable open` : `showTable close`;
+
   return (
     <>
-      <h2>
-        <span className="showTable" onClick={() => tableShow()}>
-          {znak}
-        </span>
+      <div className={classShotTable} onClick={() => tableShow()}>
         {t('request')}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </h2>
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {isTable && (
         <table className="requestHeader">
           <thead className="requestHeader thead">
@@ -91,10 +87,8 @@ export const RHeaders = () => {
                 <tr key={item.key}>
                   <td>{item.key}</td>
                   <td>{item.value}</td>
-                  <td>
-                    <span className="dell" onClick={() => dellHeader(index)}>
-                      &times;
-                    </span>
+                  <td className="requestBtnDell" onClick={() => dellHeader(index)}>
+                    X
                   </td>
                 </tr>
               );
@@ -114,10 +108,8 @@ export const RHeaders = () => {
                   onChange={handelChangeVal}
                 />
               </td>
-              <td>
-                <button className="graph__btn-endpoint" onClick={handleClick}>
-                  {t('save')}
-                </button>
+              <td className="requestBtnAdd" onClick={handleClick}>
+                {t('save')}
               </td>
             </tr>
           </tbody>
