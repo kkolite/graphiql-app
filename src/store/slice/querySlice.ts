@@ -30,10 +30,12 @@ export const getSchema = createAsyncThunk('data/fetchSchema', async (link: strin
 
   const postsSubschema = {
     schema: await schemaFromExecutor(remoteExecutor),
-    executor: remoteExecutor,
   };
 
-  const schema = postsSubschema.schema.getQueryType()?.getFields() as GraphQLFieldMap<unknown, unknown>;
+  const schema = postsSubschema.schema.getQueryType()?.getFields() as GraphQLFieldMap<
+    unknown,
+    unknown
+  >;
   result = createObj(schema);
 
   return result;
