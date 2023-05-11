@@ -14,7 +14,7 @@ export const Type = ({ obj, query }: IProps) => {
       <h4 className={styles.name}>{query}</h4>
       <p>{obj[query].description}</p>
       <div className={styles.args}>
-        <label className={styles.args__label}>{t("args")}</label>
+        <label className={styles.args__label}>{t('args')}</label>
         <ul className={styles.list}>
           {obj[query].args.map((el, i) => (
             <li key={i} className={styles.li}>
@@ -24,17 +24,17 @@ export const Type = ({ obj, query }: IProps) => {
         </ul>
       </div>
       <div className={styles.args}>
-        <label className={styles.args__label}>{t("fields")}</label>
+        <label className={styles.args__label}>{t('fields')}</label>
         <ul className={styles.list}>
-          {
-            obj[query].fields.length
-            ? obj[query].fields.map((el, i) => (
-                <li key={i} className={styles.li}>
-                  {el}
-                </li>
-              ))
-            : <p>-</p>
-            }
+          {obj[query].fields.length ? (
+            obj[query].fields.map((el, i) => (
+              <li key={i} className={styles.li}>
+                {el}
+              </li>
+            ))
+          ) : (
+            <p>-</p>
+          )}
         </ul>
       </div>
     </div>
