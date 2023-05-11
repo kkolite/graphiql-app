@@ -14,5 +14,5 @@ export async function fetchGraphQL(
       operationName,
     }),
   });
-  return result.json();
+  return result;
 }

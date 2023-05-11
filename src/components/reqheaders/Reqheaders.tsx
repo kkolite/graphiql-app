@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import './reqheaders.scss';
@@ -27,6 +29,7 @@ export const RHeaders = () => {
       itemsVal.find((item) => {
         if (item.key === key) {
           isFind = true;
+          toast.error(`${t('duplicate') as string}`);
         }
       });
       if (!isFind) {
@@ -34,7 +37,7 @@ export const RHeaders = () => {
         setKey('');
         setValue('');
       }
-    }
+    } else toast.error(`${t('emptry') as string}`);
   };
 
   const dellHeader = (index: number) => {
@@ -60,6 +63,18 @@ export const RHeaders = () => {
           {znak}
         </span>
         {t('request')}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </h2>
       {isTable && (
         <table className="requestHeader">
