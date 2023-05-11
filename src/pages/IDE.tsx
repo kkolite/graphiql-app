@@ -72,7 +72,7 @@ export const IDE = () => {
         JSON.stringify(Object.assign(head, { [parsHeaader.key]: parsHeaader.value }))
       );
     });
-    console.log('head', head);
+
     startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj, head).then((item) => {
       const { format, size, status, time } = getResults(item, start);
       setResult(format);
