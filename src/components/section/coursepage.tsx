@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import './coursepage.scss';
 import course from '../../assets/course.webp';
 import cats from '../../assets/cats.png';
 import meow from '../../assets/cat-meow.mp3';
 
 export const CoursePage = () => {
+  const { t } = useTranslation();
+
   const audio = new Audio(meow);
   const start = () => {
     audio.play();
@@ -21,64 +25,47 @@ export const CoursePage = () => {
       </div>
 
       <div className="course__container">
-        <h2 className="course__title">React Course</h2>
-        <div className="course__tags">Free | Online | in English</div>
+        <h2 className="course__title">{t('сourse')}</h2>
+        <div className="course__tags">{t('courseTags')}</div>
         <div className="course__block">
           <div className="course__right">
             <div className="course__cards">
-              <h2 className="course__chapter">TARGET-AUDIENCE</h2>
-              <div className="course__text">
-                RS School is free-of-charge and community-based education program conducted by The
-                Rolling Scopes developer community since 2013. Everyone can study at RS School,
-                regardless of age, professional employment, or place of residence. The mentors and
-                trainers of our school are front-end and javascript developers from different
-                companies and countries.
-              </div>
+              <h2 className="course__chapter">{t('courseChapter')}</h2>
+              <div className="course__text">{t('courseText1')}</div>
             </div>
             <div className="course__cards">
-              <h2 className="course__caption">FREE-OF-CHARGE-LEARNING</h2>
-              <div className="course__text">
-                The RS School is working by the principle of "Pay it forward." Members of our
-                community share their knowledge and check students' tasks for free. And we hope our
-                students will continue this work as our mentors in the future.
-              </div>
+              <h2 className="course__caption">{t('courseFree')}</h2>
+              <div className="course__text">{t('courseText2')}</div>
             </div>
           </div>
           <div className="course__left">
             <div className="course__cards">
-              <h2 className="course__caption">OPEN-TO-EVERYONE</h2>
-              <div className="course__text">
-                Everyone can study at RS School, regardless of age, professional employment, or
-                place of residence. However, you should have sufficient base knowledge before the
-                program begins.
-              </div>
+              <h2 className="course__caption">{t('courseOpen')}</h2>
+              <div className="course__text">{t('courseText3')}</div>
             </div>
             <div className="course__cards">
-              <h2 className="course__caption">LEARNING-MATERIALS</h2>
+              <h2 className="course__caption">{t('courseLern')}</h2>
               <div className="course__text">
-                School’s documentation - {` `}
+                {t('courseText41')} {` `}
                 <a href="https://docs.rs.school" target="_blank">
                   https://docs.rs.school
                 </a>
-                . You can find all materials on the {` `}
+                {t('courseText42')} {` `}
                 <a href="https://www.youtube.com/c/RollingScopesSchool" target="_blank">
                   YouTube
                 </a>
-                {` `} channel.
+                {` `} {t('courseText43')}
               </div>
             </div>
             <div className="course__cards">
-              <h2 className="course__caption">CERTIFICATE</h2>
-              <div className="course__text">
-                After accomplishing an education, students will receive an electronic certificate of
-                completion.
-              </div>
+              <h2 className="course__caption">{t('courseCert')}</h2>
+              <div className="course__text">{t('courseText5')}</div>
             </div>
           </div>
         </div>
         <div className="course__link">
           <a href="https://rs.school/react/" target="_blank">
-            LEARN MORE
+            {t('learnMore')}
           </a>
         </div>
       </div>
