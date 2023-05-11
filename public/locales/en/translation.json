@@ -26,5 +26,11 @@
 	"inputKey": "Enter Key",
 	"inputValue": "Enter Value",
 	"args": "Args",
-	"fields": "Fields"
+	"fields": "Fields",
+	"duplicate": "😿Duplicate key!",
+	"emptry": "Emptry field!",
+	"emptryendpoint": "Emptry endpoint!",
+	"emptryquery":"Emptry query!",
+	"novalidquery":"No valid query query!",
+	"novalidvar":"Non-JSON variables!"
 }

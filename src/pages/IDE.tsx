@@ -1,6 +1,8 @@
 import { Suspense, useState } from 'react';
 import JSONPretty from 'react-json-pretty';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Shema } from './../components/shema/Shema';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
@@ -21,8 +23,8 @@ async function startFetchUnnamedQuery(
   header: HeadersInit
 ) {
   if (endpoint !== '' && query !== '') {
-    const data = await fetchGraphQL(query, name, variable, endpoint, header);
-    return data;
+    const response = await fetchGraphQL(query, name, variable, endpoint, header);
+    return response.json();
   }
 }
 
@@ -55,10 +57,32 @@ export const IDE = () => {
   };
 
   const handleClick = () => {
-    if (endpoint === '' && query === '') return;
+    if (endpoint === '') {
+      toast.error(`${t('emptryendpoint')}`);
+      return;
+    }
+    const result = endpoint.match('^(http|https)://');
+    if (!result) toast.error(`${t('emptryendpoint')}`);
+
+    if (query === '') {
+      toast.error(`${t('emptryquery')}`);
+      return;
+    }
+    if (typeof query !== 'string') {
+      toast.error(`${t('novalidquery')}`);
+      return false;
+    }
 
     const [queryPost, paramName] = createQuery(query);
     setQuery(queryPost);
+    if (variable !== '') {
+      try {
+        JSON.parse(variable);
+      } catch (e) {
+        toast.error(`${t('novalidvar')}`);
+        return false;
+      }
+    }
 
     const variableObj: Record<string, string | number> = variable ? JSON.parse(variable) : {};
 
@@ -85,6 +109,18 @@ export const IDE = () => {
   return (
     <section className="main__container main__graph graph">
       <div className="graph__query">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div className="graph__endpoint">
           <div>{t('Endpoint')}:</div>
           <input
