@@ -106,6 +106,8 @@ export const IDE = () => {
     dispatch(getSchema(endpoint));
   };
 
+  const graphShema = showDoc ? `graph__shema graph__shema_active` : `graph__shema`;
+
   return (
     <section className="main__container main__graph graph">
       <div className="graph__query">
@@ -151,7 +153,7 @@ export const IDE = () => {
             <div>Show Doc</div>
           </label>
         </div>
-        <div className="graph__shema">
+        <div className={graphShema}>
           <div>
             {showDoc && (
               <Suspense fallback={<div>{t('loading')}</div>}>

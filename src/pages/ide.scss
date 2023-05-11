@@ -63,14 +63,16 @@
       background-color: #F75A1B;
    }
    &__shema {
-      width: 100%;
-      position: absolute;
-      top: 36px;
-      left: 0;
-      border: 1px solid #104068;
-      background-color: #ffffff;
-      padding: 0 14px;
-      z-index: 8;
+      &.graph__shema_active {
+         width: 100%;
+         position: absolute;
+         top: 36px;
+         left: 0;
+         border: 1px solid #104068;
+         background-color: #ffffff;
+         padding: 0 14px;
+         z-index: 8;
+      }
    }
 
    &__edit {
