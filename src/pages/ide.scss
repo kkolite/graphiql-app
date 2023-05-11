@@ -3,6 +3,7 @@
       display: flex;
       align-items: center;
       gap: 2rem;
+      margin: 0 0 21px 0;
    }
    &__endpoint {
       display: flex;
@@ -11,7 +12,7 @@
       gap: 1rem;
    }
    &__header {
-      display: flex;
+      margin: 0 0 21px 0;
    }
    &__intpoint {
       width: 100%;
