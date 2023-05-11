@@ -17,7 +17,7 @@ interface IQueryType {
     name: string;
     type: string;
   }[];
-  fields: string[]
+  fields: string[];
 }
 
 export interface IQuery {
