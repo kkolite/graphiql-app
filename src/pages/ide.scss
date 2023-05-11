@@ -33,7 +33,45 @@
       border-radius: 5px;
       cursor: pointer;
    }
-   &__docs {}
+
+   &__docs {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+   }
+   &__show {
+      margin: 0 0 14px;
+      background-color: #104068;
+      & label {
+         text-align: center;
+      }
+      & label div {
+         padding: 10px 0;
+      }
+      & label input {
+         position: absolute;
+         display: none;
+         color: #ffffff;
+      }
+      & label input + div {
+         font-weight: 500;
+         color: #fff;
+      }
+   }
+   & .graph__show_action input:checked + div {
+      background-color: #F75A1B;
+   }
+   &__shema {
+      width: 100%;
+      position: absolute;
+      top: 36px;
+      left: 0;
+      border: 1px solid #104068;
+      background-color: #ffffff;
+      padding: 0 14px;
+      z-index: 8;
+   }
+
    &__edit {
       display: flex;
    }

@@ -12,8 +12,9 @@
 .list {
   display: flex;
   gap: 20px;
-  width: max-content;
+  // width: max-content;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 
   &__block {
     overflow-x: auto;
