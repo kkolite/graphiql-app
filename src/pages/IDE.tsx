@@ -23,8 +23,14 @@ async function startFetchUnnamedQuery(
   header: HeadersInit
 ) {
   if (endpoint !== '' && query !== '') {
-    const response = await fetchGraphQL(query, name, variable, endpoint, header);
-    return response.json();
+    try {
+      const response = await fetchGraphQL(query, name, variable, endpoint, header);
+      if (response !== null) {
+        return response;
+      }
+    } catch (e) {
+      return false;
+    }
   }
 }
 
@@ -98,9 +104,14 @@ export const IDE = () => {
     });
 
     startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj, head).then((item) => {
-      const { format, size, status, time } = getResults(item, start);
-      setResult(format);
-      setInfo({ resTime: time.toFixed(1), resSize: size, status: status });
+      if (item) {
+        const { format, size, status, time } = getResults(item, start);
+        setResult(format);
+        setInfo({ resTime: time.toFixed(1), resSize: size, status: status });
+      } else {
+        toast.error(`${t('novalidendpoint')}`);
+        setResult('');
+      }
     });
 
     dispatch(getSchema(endpoint));

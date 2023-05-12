@@ -5,7 +5,7 @@ export async function fetchGraphQL(
   endpoint: string,
   header: HeadersInit
 ) {
-  const result = await fetch(endpoint, {
+  const res = await fetch(endpoint, {
     method: 'POST',
     headers: header,
     body: JSON.stringify({
@@ -13,6 +13,14 @@ export async function fetchGraphQL(
       variables,
       operationName,
     }),
-  });
-  return result;
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .catch((error) => {
+      return error;
+    });
+  return res;
 }
