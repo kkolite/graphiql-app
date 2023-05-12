@@ -1,3 +1,4 @@
+export const RESPONS_STATUS = 199;
 export const operationsDoc = `query MyQuery {
     characters {
       results {

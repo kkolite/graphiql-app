@@ -1,3 +1,5 @@
+import { RESPONS_STATUS } from '../data/variable';
+
 export async function fetchGraphQL(
   operationsDoc: string,
   operationName: string,
@@ -15,7 +17,7 @@ export async function fetchGraphQL(
     }),
   })
     .then((response) => {
-      if (response.ok) {
+      if (response.status > RESPONS_STATUS) {
         return response.json();
       }
     })
