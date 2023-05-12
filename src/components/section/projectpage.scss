@@ -26,6 +26,9 @@
     }
   }
   &__cards {
+    &:first-child {
+      margin: 0 0 260px 0;
+    }
     &:not(:last-child) {
       margin: 0 0 40px 0;
     }
