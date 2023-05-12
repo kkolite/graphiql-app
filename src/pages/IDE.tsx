@@ -122,6 +122,7 @@ export const IDE = () => {
   };
 
   const graphShema = showDoc ? `graph__shema graph__shema_active` : `graph__shema`;
+  const graphVarpanel = varRow ? `graph__varpanel open` : `graph__varpanel close`;
 
   return (
     <section className="main__container main__graph graph">
@@ -183,10 +184,10 @@ export const IDE = () => {
         <div className="graph__count">{lengthStr}</div>
         <div className="graph__value">
           <textarea value={query} onChange={handelChangeQ} rows={colrow} name="story"></textarea>
-          <h2 className="graph__varpanel" onClick={queryVar}>
-            Query Variables<span>{`>`}</span>
-          </h2>
-          <textarea onChange={handelChangeV} rows={varRow}></textarea>
+          <div className={graphVarpanel} onClick={queryVar}>
+            Query Variables
+          </div>
+          {(varRow && <textarea onChange={handelChangeV} rows={varRow}></textarea>) || ``}
         </div>
         <div className="graph__result">
           {result && (
