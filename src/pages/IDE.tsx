@@ -42,6 +42,7 @@ export const IDE = () => {
   const [variable, setVariable] = useState('');
   const [result, setResult] = useState('');
   const [info, setInfo] = useState(infostatus);
+  const [varRow, setVarRow] = useState(0);
   const { t } = useTranslation();
   let lengthStr = '';
   let colrow = 35;
@@ -103,7 +104,6 @@ export const IDE = () => {
     });
 
     startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj, head).then((item) => {
-      console.log('item', item);
       if (typeof item === 'object') {
         const { format, size, status, time } = getResults(item, start);
         setResult(format);
@@ -115,6 +115,10 @@ export const IDE = () => {
     });
 
     dispatch(getSchema(endpoint));
+  };
+
+  const queryVar = () => {
+    setVarRow(varRow === 0 ? 5 : 0);
   };
 
   const graphShema = showDoc ? `graph__shema graph__shema_active` : `graph__shema`;
@@ -179,8 +183,10 @@ export const IDE = () => {
         <div className="graph__count">{lengthStr}</div>
         <div className="graph__value">
           <textarea value={query} onChange={handelChangeQ} rows={colrow} name="story"></textarea>
-          <h2>Query Variables</h2>
-          <textarea onChange={handelChangeV} rows={5}></textarea>
+          <h2 className="graph__varpanel" onClick={queryVar}>
+            Query Variables<span>{`>`}</span>
+          </h2>
+          <textarea onChange={handelChangeV} rows={varRow}></textarea>
         </div>
         <div className="graph__result">
           {result && (
