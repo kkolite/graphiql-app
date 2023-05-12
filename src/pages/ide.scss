@@ -94,10 +94,32 @@
          width: 100%;
          padding: 3px 5px;
       }
-      .graph__varpanel {
-         cursor: pointer;
+   }
+
+
+   &__varpanel {
+      font-weight: 500;
+      background-color: #D3D4D5;
+      padding: 4px 5px;
+      cursor: pointer;
+      &:hover {
+         color: #F75A1B;
+      }
+      &.close {
+         &:before {
+            font-family: "DesignIcons";
+            content: "\F0A03";
+         }
+      }
+      &.open {
+         &:before {
+            font-family: "DesignIcons";
+            content: "\F06B6";
+         }
       }
    }
+
+
    &__result {
       position: relative;
       width: 100%;
