@@ -25,9 +25,8 @@ async function startFetchUnnamedQuery(
   if (endpoint !== '' && query !== '') {
     try {
       const response = await fetchGraphQL(query, name, variable, endpoint, header);
-      if (response !== null) {
-        return response;
-      }
+      console.log('response', response);
+      return response;
     } catch (e) {
       return false;
     }
@@ -104,7 +103,8 @@ export const IDE = () => {
     });
 
     startFetchUnnamedQuery(endpoint, queryPost, paramName, variableObj, head).then((item) => {
-      if (item) {
+      console.log('item', item);
+      if (typeof item === 'object') {
         const { format, size, status, time } = getResults(item, start);
         setResult(format);
         setInfo({ resTime: time.toFixed(1), resSize: size, status: status });

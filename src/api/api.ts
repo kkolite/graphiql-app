@@ -21,8 +21,8 @@ export async function fetchGraphQL(
         return response.json();
       }
     })
-    .catch((error) => {
-      return error;
+    .catch(() => {
+      return false;
     });
   return res;
 }

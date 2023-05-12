@@ -38,7 +38,7 @@ export const ProjectPage = () => {
                 <li>- React</li>
                 <li>- Redux</li>
                 <li>- TypeScript</li>
-                <li>- Saas</li>
+                <li>- Sass</li>
                 <li>- Vite</li>
                 <li>- Firebase</li>
               </ul>
