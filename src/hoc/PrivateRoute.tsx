@@ -12,18 +12,25 @@ interface IProps {
 export const PrivateRoute = ({children, forAnonim, redirect}:IProps) => {
   const [isLoading, setLoading] = useState(true);
   const [isWell, setWell] = useState(false);
+  const result = fbCheck();
 
   useEffect(() => {
-    fbCheck()
-    .then(result => setWell(forAnonim ? !result : result))
-    .then(() => setLoading(false));
-  }, []);
+    //const result = fbCheck();
+    setWell(result);
+    setLoading(false);
+  }, [result]);
 
-  const CheckToken = (
-    isWell
-    ? children
-    : <Navigate to={redirect}/>
-  )
+  const CheckToken = forAnonim
+  ? (
+      isWell
+      ? <Navigate to={redirect}/>
+      : children
+    )
+  : (
+      isWell
+      ? children
+      : <Navigate to={redirect}/>
+    )
 
   return (
     <div>

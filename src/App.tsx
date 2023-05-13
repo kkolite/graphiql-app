@@ -18,7 +18,7 @@ function App() {
         {
           path: EPages.LOGIN,
           element: (
-            <PrivateRoute forAnonim={true} redirect={EPages.HOME}>
+            <PrivateRoute forAnonim={true} redirect={EPages.IDE}>
               <Auth />
             </PrivateRoute>
           ),
