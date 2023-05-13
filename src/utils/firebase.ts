@@ -57,9 +57,11 @@ export const fbLogout = () => {
 
 export const fbCheck = async () => {
   try {
-    const token = getToken();
+    const token = getToken();    
     if (!token) return false;
-    await signInWithCustomToken(auth, token);
+
+    // Не смог найти в FireBase метод для првоерки по токену
+    //await signInWithCustomToken(auth, token);
     return true;
   } catch {
     return false;
