@@ -24,7 +24,7 @@ export const Header = () => {
   const handleSignOut = () => {
     fbLogout();
     location.reload();
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', isSticky);
@@ -54,25 +54,22 @@ export const Header = () => {
           <NavLink className="nav__item" to={EPages.HOME}>
             {t('pageHome')}
           </NavLink>
-          {
-            isUser &&
+          {isUser && (
             <NavLink className="nav__item" to={EPages.IDE}>
               {t('pageIDE')}
             </NavLink>
-          }
-          
+          )}
         </nav>
 
         <div className="header__btn-box">
           <div className="header__sign">
-            {
-              isUser
-              ? <button onClick={handleSignOut}>Sign Out</button>
-              : <NavLink className={isSignUp ? 'header__active' : ''} to={EPages.LOGIN}>
-                  Sign up
-                </NavLink>
-            }
-            
+            {isUser ? (
+              <button onClick={handleSignOut}>Sign Out</button>
+            ) : (
+              <NavLink className={isSignUp ? 'header__active' : ''} to={EPages.LOGIN}>
+                Sign up
+              </NavLink>
+            )}
           </div>
           <div className="header__lang">
             <button className={langLength !== 1 ? 'active' : ''} onClick={() => changeLang('en')}>

@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  signInWithCustomToken,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
@@ -55,15 +54,10 @@ export const fbLogout = () => {
   signOut(auth);
 };
 
-export const fbCheck = /*async*/ () => {
+export const fbCheck = () => {
   try {
-    const token = getToken();    
+    const token = getToken();
     if (!token) return false;
-
-    console.log(token);
-    
-    // Не смог найти в FireBase метод для првоерки по токену
-    //await signInWithCustomToken(auth, token);
     return true;
   } catch {
     return false;

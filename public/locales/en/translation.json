@@ -1,5 +1,5 @@
 {
-	"pageHome": "Home",
+	"pageHome": "About",
 	"pageIDE": "IDE",
 	"pageLogin": "Login",
 	"password": "password",
@@ -70,5 +70,12 @@
 	"developYou": "YOUTRACK",
 	"developerText2": "YouTrack is a project management tool that adapts to the needs of different teams in a company. In YouTrack, you can plan projects and track tasks, use Agile boards, organize sprints and releases, maintain a knowledge base, use a Gantt chart, track turnaround time, create reports and dashboards, and customize workflows. YouTrack is fully customizable to the business processes of various teams, from small startups to corporations.",
 	"developerText3": "Figma is a cloud-based design and prototyping tool that allows users to create and collaborate on the design of websites, mobile apps and other digital products. It is a browser-based tool, meaning you can use it on any device with an Internet connection.",
-	"developerText4": "Visual Studio Code is a tool for layout designers and programmers that is one of the most popular in its niche. It's free and open, and you can make it whatever you want for your tasks."
+	"developerText4": "Visual Studio Code is a tool for layout designers and programmers that is one of the most popular in its niche. It's free and open, and you can make it whatever you want for your tasks.",
+	"signup": "Sign up",
+	"signin": "Sign in",
+	"youremail": "your email",
+	"yourusername": "your username",
+	"yourpassword": "your password",
+	"allright": "You are registered",
+	"noallright": "You are not registered"
 }

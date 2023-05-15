@@ -8,7 +8,7 @@ import './modal.scss';
 import { Navigate } from 'react-router-dom';
 
 interface IProps {
-  setLogin: Dispatch<SetStateAction<boolean>>
+  setLogin: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Login = ({ setLogin }: IProps) => {
@@ -39,49 +39,49 @@ export const Login = ({ setLogin }: IProps) => {
     const result = await fbLogin(email, password);
 
     if (!result) {
-      const str = t("LOGIN")
+      const str = t('LOGIN');
       setError(str);
       return;
     }
 
     setSuccess(true);
-    location.reload(); // КОСТЫЛЬ
+    location.reload();
   };
 
-  return (
-    isSuccess
-      ? <Navigate to={EPages.IDE} />
-      : <div className="modal">
-          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
-            <div className="modal__name">Sign in</div>
-            <form onSubmit={handleSubmit}>
-              <div className="modal__text-input">
-                <label>
-                  your email
-                  <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-                </label>
-                <div className="modal__error">{emailError}</div>
-              </div>
-
-              <div className="modal__text-input">
-                <label>
-                  your password
-                  <input
-                    type="password"
-                    placeholder={t('password') as string}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </label>
-                <div className="modal__error">{passwordError}</div>
-              </div>
-              <div>{error}</div>
-              <button className="modal__btn">{t('logIn')}</button>
-              <p>
-                {t("toRegister")}
-                <span onClick={() => setLogin(false)}> {t("toRegisterSpan")}</span>
-              </p>
-            </form>
+  return isSuccess ? (
+    <Navigate to={EPages.IDE} />
+  ) : (
+    <div className="modal">
+      <div className="modal__box" onClick={(e) => e.stopPropagation()}>
+        <div className="modal__name">{t('signin')}</div>
+        <form onSubmit={handleSubmit}>
+          <div className="modal__text-input">
+            <label>
+              {t('youremail')}
+              <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+            </label>
+            <div className="modal__error">{emailError}</div>
           </div>
-        </div>  
+
+          <div className="modal__text-input">
+            <label>
+              {t('yourpassword')}
+              <input
+                type="password"
+                placeholder={t('password') as string}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <div className="modal__error">{passwordError}</div>
+          </div>
+          <div>{error}</div>
+          <button className="modal__btn">{t('logIn')}</button>
+          <p>
+            {t('toRegister')}
+            <span onClick={() => setLogin(false)}> {t('toRegisterSpan')}</span>
+          </p>
+        </form>
+      </div>
+    </div>
   );
 };
