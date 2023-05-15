@@ -82,5 +82,13 @@
       font-size: 21px;
       line-height: 123%;
       color: #ffffff;
+      margin: 0 0 21px 0;
+   }
+   &__account-have {
+      & span {
+         font-weight: 500;
+         color: #A545B1;
+         cursor: pointer;
+      }
    }
 }
