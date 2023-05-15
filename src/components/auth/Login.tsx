@@ -48,11 +48,18 @@ export const Login = ({ setLogin }: IProps) => {
     location.reload();
   };
 
+  const handleClose = () => {
+    location.replace('/');
+  };
+
   return isSuccess ? (
     <Navigate to={EPages.IDE} />
   ) : (
-    <div className="modal">
+    <div className="modal" onClick={handleClose}>
       <div className="modal__box" onClick={(e) => e.stopPropagation()}>
+        <div className="modal__close">
+          <div onClick={handleClose}>X</div>
+        </div>
         <div className="modal__name">{t('signin')}</div>
         <form onSubmit={handleSubmit}>
           <div className="modal__text-input">
