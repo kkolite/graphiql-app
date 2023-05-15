@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import './error.scss';
 import wallpaper from '../assets/wallpaper.jpg';
 
 export const Error = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="main__remark remark">
       <div className="remark__fon">
@@ -12,13 +16,13 @@ export const Error = () => {
         <div className="remark__rigth"></div>
         <div className="remark__left">
           <div className="remark__message">
-            <div className="remark__error">404 ERROR</div>
-            <div className="remark__whoops">Whoops!</div>
-            <div className="remark__text">we couldn’t find the page you were looking for :(</div>
+            <div className="remark__error">{t('404')}</div>
+            <div className="remark__whoops">{t('oh')}</div>
+            <div className="remark__text">{t('findpage')} :(</div>
           </div>
           <div className="remark__btn">
             <a href="/" className="remark__home">
-              Go Home
+              {t('gohome')}
             </a>
           </div>
         </div>
