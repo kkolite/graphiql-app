@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../store/hooks';
 
@@ -8,7 +8,11 @@ import { EValidate } from '../../data/types';
 import { setBtnSignUp } from '../../store/slice/headerSlice';
 import './modal.scss';
 
-export const Register = () => {
+interface IProps {
+  setLogin: Dispatch<SetStateAction<boolean>>
+}
+
+export const Register = ({ setLogin }:IProps) => {
   const dispatch = useAppDispatch();
 
   const [name, setName] = useState('');
@@ -40,15 +44,15 @@ export const Register = () => {
     console.log(result);
   };
 
-  const handleClick = () => {
+  /*const handleClick = () => {
     dispatch(setBtnSignUp(false));
-  };
+  };*/
 
   return (
-    <div className="modal" onClick={handleClick}>
+    <div className="modal" /*onClick={handleClick}*/>
       <div className="modal__box" onClick={(e) => e.stopPropagation()}>
         <div className="modal__close">
-          <div onClick={handleClick}>X</div>
+          <div /*onClick={handleClick}*/>X</div>
         </div>
         <div className="modal__name">Sign up</div>
         <form onSubmit={handleSubmit}>
@@ -84,6 +88,10 @@ export const Register = () => {
             <div className="modal__error">{passwordError}</div>
           </div>
           <button className="modal__btn">{t('createAccount')}</button>
+          <p>
+            {t("toLogin")}
+            <span onClick={() => setLogin(true)}> {t("toLoginSpan")}</span>
+          </p>
         </form>
       </div>
     </div>

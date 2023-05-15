@@ -4,34 +4,27 @@ import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
 import { EPages } from '../../data/types';
-import { setBtnSignIn, setBtnSignUp } from '../../store/slice/headerSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
+import { fbCheck, fbLogout } from '../../utils/firebase';
 
 import logo from '../../assets/graphql.svg';
-import { Login, Register } from '../';
 import './header.scss';
 
 export const Header = () => {
   const [sticky, setSticky] = useState('');
-  const dispatch = useAppDispatch();
-  const { isSignIn, isSignUp } = useAppSelector((state) => state.headers);
+  const { isSignUp } = useAppSelector((state) => state.headers);
   const { t, i18n } = useTranslation();
   const langLength = i18next.languages.length;
+  const isUser = fbCheck();
 
   const changeLang = (lang: string) => {
     i18n.changeLanguage(lang);
   };
 
-  const changeSign = (status: string) => {
-    if (status === 'in') {
-      dispatch(setBtnSignIn(true));
-      dispatch(setBtnSignUp(false));
-    }
-    if (status === 'up') {
-      dispatch(setBtnSignIn(false));
-      dispatch(setBtnSignUp(true));
-    }
-  };
+  const handleSignOut = () => {
+    fbLogout();
+    location.reload();
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', isSticky);
@@ -61,21 +54,25 @@ export const Header = () => {
           <NavLink className="nav__item" to={EPages.HOME}>
             {t('pageHome')}
           </NavLink>
-          <NavLink className="nav__item" to={EPages.IDE}>
-            {t('pageIDE')}
-          </NavLink>
+          {
+            isUser &&
+            <NavLink className="nav__item" to={EPages.IDE}>
+              {t('pageIDE')}
+            </NavLink>
+          }
+          
         </nav>
 
         <div className="header__btn-box">
-          {isSignIn && <Login />}
-          {isSignUp && <Register />}
           <div className="header__sign">
-            <button className={isSignIn ? 'header__active' : ''} onClick={() => changeSign('in')}>
-              Sign in
-            </button>
-            <button className={isSignUp ? 'header__active' : ''} onClick={() => changeSign('up')}>
-              Sign up
-            </button>
+            {
+              isUser
+              ? <button onClick={handleSignOut}>Sign Out</button>
+              : <NavLink className={isSignUp ? 'header__active' : ''} to={EPages.LOGIN}>
+                  Sign up
+                </NavLink>
+            }
+            
           </div>
           <div className="header__lang">
             <button className={langLength !== 1 ? 'active' : ''} onClick={() => changeLang('en')}>
