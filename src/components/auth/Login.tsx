@@ -1,17 +1,18 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { fbLogin } from '../../utils/firebase';
 import { validate } from '../../utils/validate';
 import { EPages, EValidate } from '../../data/types';
 import './modal.scss';
-import { Navigate } from 'react-router-dom';
 
 interface IProps {
   setLogin: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Login = ({ setLogin }: IProps) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
@@ -49,7 +50,7 @@ export const Login = ({ setLogin }: IProps) => {
   };
 
   const handleClose = () => {
-    location.replace('/');
+    navigate('/');
   };
 
   return isSuccess ? (

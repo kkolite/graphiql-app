@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
@@ -11,6 +11,7 @@ import logo from '../../assets/graphql.svg';
 import './header.scss';
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [sticky, setSticky] = useState('');
   const { isSignUp } = useAppSelector((state) => state.headers);
   const { t, i18n } = useTranslation();
@@ -23,7 +24,7 @@ export const Header = () => {
 
   const handleSignOut = () => {
     fbLogout();
-    location.replace('/');
+    navigate('/');
   };
 
   useEffect(() => {

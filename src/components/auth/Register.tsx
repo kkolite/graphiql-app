@@ -1,6 +1,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { fbRegister } from '../../utils/firebase';
@@ -13,6 +14,7 @@ interface IProps {
 }
 
 export const Register = ({ setLogin }: IProps) => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');
   const [email, setEmail] = useState('');
@@ -47,7 +49,7 @@ export const Register = ({ setLogin }: IProps) => {
   };
 
   const handleClose = () => {
-    location.replace('/');
+    navigate('/');
   };
 
   return (
