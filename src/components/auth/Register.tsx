@@ -102,10 +102,10 @@ export const Register = ({ setLogin }: IProps) => {
             <div className="modal__error">{passwordError}</div>
           </div>
           <button className="modal__btn">{t('createAccount')}</button>
-          <p>
+          <div className="modal__account-have">
             {t('toLogin')}
             <span onClick={() => setLogin(true)}> {t('toLoginSpan')}</span>
-          </p>
+          </div>
         </form>
       </div>
     </div>
