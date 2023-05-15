@@ -1,20 +1,18 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../store/hooks';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { fbRegister } from '../../utils/firebase';
 import { validate } from '../../utils/validate';
 import { EValidate } from '../../data/types';
-import { setBtnSignUp } from '../../store/slice/headerSlice';
 import './modal.scss';
 
 interface IProps {
-  setLogin: Dispatch<SetStateAction<boolean>>
+  setLogin: Dispatch<SetStateAction<boolean>>;
 }
 
-export const Register = ({ setLogin }:IProps) => {
-  const dispatch = useAppDispatch();
-
+export const Register = ({ setLogin }: IProps) => {
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');
   const [email, setEmail] = useState('');
@@ -40,25 +38,37 @@ export const Register = ({ setLogin }:IProps) => {
 
     if (!validation.every((el) => el)) return;
 
-    const result = await fbRegister(name, email, password);
-    console.log(result);
+    try {
+      await fbRegister(name, email, password);
+      toast.success(`${t('allright')}`);
+    } catch {
+      toast.error(`${t('noallright')}`);
+    }
   };
 
-  /*const handleClick = () => {
-    dispatch(setBtnSignUp(false));
-  };*/
-
   return (
-    <div className="modal" /*onClick={handleClick}*/>
+    <div className="modal">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="modal__box" onClick={(e) => e.stopPropagation()}>
         <div className="modal__close">
-          <div /*onClick={handleClick}*/>X</div>
+          <div>X</div>
         </div>
-        <div className="modal__name">Sign up</div>
+        <div className="modal__name">{t('signup')}</div>
         <form onSubmit={handleSubmit}>
           <div className="modal__text-input">
             <label>
-              your username
+              {t('yourusername')}
               <input
                 type="text"
                 placeholder={t('name') as string}
@@ -70,7 +80,7 @@ export const Register = ({ setLogin }:IProps) => {
 
           <div className="modal__text-input">
             <label>
-              your email
+              {t('youremail')}
               <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
             </label>
             <div className="modal__error">{emailError}</div>
@@ -78,7 +88,7 @@ export const Register = ({ setLogin }:IProps) => {
 
           <div className="modal__text-input">
             <label>
-              your password
+              {t('yourpassword')}
               <input
                 type="password"
                 placeholder={t('password') as string}
@@ -89,8 +99,8 @@ export const Register = ({ setLogin }:IProps) => {
           </div>
           <button className="modal__btn">{t('createAccount')}</button>
           <p>
-            {t("toLogin")}
-            <span onClick={() => setLogin(true)}> {t("toLoginSpan")}</span>
+            {t('toLogin')}
+            <span onClick={() => setLogin(true)}> {t('toLoginSpan')}</span>
           </p>
         </form>
       </div>
