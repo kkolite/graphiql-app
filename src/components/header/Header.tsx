@@ -23,7 +23,7 @@ export const Header = () => {
 
   const handleSignOut = () => {
     fbLogout();
-    location.reload();
+    location.replace('/');
   };
 
   useEffect(() => {
