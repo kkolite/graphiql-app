@@ -46,8 +46,12 @@ export const Register = ({ setLogin }: IProps) => {
     }
   };
 
+  const handleClose = () => {
+    location.replace('/');
+  };
+
   return (
-    <div className="modal">
+    <div className="modal" onClick={handleClose}>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -62,7 +66,7 @@ export const Register = ({ setLogin }: IProps) => {
       />
       <div className="modal__box" onClick={(e) => e.stopPropagation()}>
         <div className="modal__close">
-          <div>X</div>
+          <div onClick={handleClose}>X</div>
         </div>
         <div className="modal__name">{t('signup')}</div>
         <form onSubmit={handleSubmit}>
