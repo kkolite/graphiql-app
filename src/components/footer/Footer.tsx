@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import './footer.scss';
 import rsschool from '../../assets/rs_shool.svg';
 import github from '../../assets/github.png';
 import cats from '../../assets/fcats.png';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="footer__box footer__container">
@@ -34,9 +38,7 @@ export const Footer = () => {
           </a>
         </div>
       </div>
-      <div className="footer__copywrite footer__container">
-        RS-GraphQL © 2023 All rights reserved.
-      </div>
+      <div className="footer__copywrite footer__container">RS-GraphQL © 2023 {t('copywrite')}</div>
     </footer>
   );
 };

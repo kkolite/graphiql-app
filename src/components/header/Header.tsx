@@ -64,10 +64,10 @@ export const Header = () => {
         <div className="header__btn-box">
           <div className="header__sign">
             {isUser ? (
-              <button onClick={handleSignOut}>Sign Out</button>
+              <button onClick={handleSignOut}>{t('signout')}</button>
             ) : (
               <NavLink className={isSignUp ? 'header__active' : ''} to={EPages.LOGIN}>
-                Sign up
+                {t('signup')}
               </NavLink>
             )}
           </div>
