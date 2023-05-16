@@ -126,21 +126,21 @@ export const IDE = () => {
 
   return (
     <section className="main__container main__graph graph">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="graph__query">
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
         <div className="graph__endpoint">
-          <div>{t('Endpoint')}:</div>
+          <div className="graph__endpoint-text">{t('Endpoint')}:</div>
           <input
             className="graph__intpoint"
             placeholder={t('inputendp') as string}
