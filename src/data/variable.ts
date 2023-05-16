@@ -22,3 +22,7 @@ export interface IRequestHeaders {
 }
 
 export const reqHeaders: IRequestHeaders[] = [{ key: 'Content-type', value: 'application/json' }];
+
+export const TOKEN = 'token';
+export const MAX_AGE = 'max-age';
+export const PATH = 'path';

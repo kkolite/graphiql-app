@@ -1,6 +1,6 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { fbLogin } from '../../utils/firebase';
 import { validate } from '../../utils/validate';
@@ -18,7 +18,6 @@ export const Login = ({ setLogin }: IProps) => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
-  const [isSuccess, setSuccess] = useState(false);
 
   const { t } = useTranslation();
 
@@ -45,17 +44,14 @@ export const Login = ({ setLogin }: IProps) => {
       return;
     }
 
-    setSuccess(true);
-    location.reload();
+    navigate(EPages.IDE);
   };
 
   const handleClose = () => {
-    navigate('/');
+    navigate(EPages.HOME);
   };
 
-  return isSuccess ? (
-    <Navigate to={EPages.IDE} />
-  ) : (
+  return (
     <div className="modal" onClick={handleClose}>
       <div className="modal__box" onClick={(e) => e.stopPropagation()}>
         <div className="modal__close">
