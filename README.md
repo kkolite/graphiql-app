@@ -2,7 +2,8 @@
 ## Exemples for GrafQL query ##
 1. Endpoint: https://rickandmortyapi.com/graphql
 ### Simple query ###
-``` query MyQuery {
+```
+query MyQuery {
     characters {
       results {
         image
@@ -56,7 +57,8 @@ query MyQuery {
 ```
 ### Query with variable ###
 
-```query Query($code:ID!) {
+```
+query Query($code:ID!) {
   country(code: $code) {
     capital
     emoji
@@ -73,7 +75,8 @@ query MyQuery {
 ```
 variable:
 
-```{
+```
+{
   "code": "BR"
 }
 ```
