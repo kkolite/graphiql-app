@@ -166,7 +166,7 @@ export const IDE = () => {
               onChange={(e) => setShowDoc(e.target.checked)}
               value="1"
             />
-            <div>Show Doc</div>
+            <div>{t('showdoc')}</div>
           </label>
         </div>
         <div className={graphShema}>
@@ -185,7 +185,7 @@ export const IDE = () => {
         <div className="graph__value">
           <textarea value={query} onChange={handelChangeQ} rows={colrow} name="story"></textarea>
           <div className={graphVarpanel} onClick={queryVar}>
-            Query Variables
+            {t('queryVar')}
           </div>
           {(varRow && <textarea onChange={handelChangeV} rows={varRow}></textarea>) || ``}
         </div>
