@@ -83,5 +83,7 @@
 	"404": "404 ERROR",
 	"oh": "Whoops!",
 	"findpage": "we couldn’t find the page you were looking for ",
-	"gohome": "Go home"
+	"gohome": "Go home",
+	"showdoc": "Show Docs",
+	"queryVar": "Query Variables"
 }
