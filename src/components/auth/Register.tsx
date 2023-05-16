@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { fbRegister } from '../../utils/firebase';
 import { validate } from '../../utils/validate';
-import { EValidate } from '../../data/types';
+import { EPages, EValidate } from '../../data/types';
 import './modal.scss';
 
 interface IProps {
@@ -41,8 +41,7 @@ export const Register = ({ setLogin }: IProps) => {
     if (!validation.every((el) => el)) return;
 
     try {
-      await fbRegister(name, email, password)
-      .then(() => setTimeout(() => setLogin(true), 4000));
+      await fbRegister(name, email, password).then(() => setTimeout(() => setLogin(true), 4000));
       toast.success(`${t('allright')}`);
     } catch {
       toast.error(`${t('noallright')}`);
@@ -50,7 +49,7 @@ export const Register = ({ setLogin }: IProps) => {
   };
 
   const handleClose = () => {
-    navigate('/');
+    navigate(EPages.HOME);
   };
 
   return (
