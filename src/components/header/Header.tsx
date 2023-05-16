@@ -24,7 +24,7 @@ export const Header = () => {
 
   const handleSignOut = () => {
     fbLogout();
-    navigate('/');
+    navigate(EPages.HOME);
   };
 
   useEffect(() => {

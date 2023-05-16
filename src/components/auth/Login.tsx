@@ -78,7 +78,7 @@ export const Login = ({ setLogin }: IProps) => {
             </label>
             <div className="modal__error">{passwordError}</div>
           </div>
-          <div>{error}</div>
+          <div className="modal__error-all">{error}</div>
           <button className="modal__btn">{t('logIn')}</button>
           <div className="modal__account-have">
             {t('toRegister')}
