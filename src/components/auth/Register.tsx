@@ -41,7 +41,8 @@ export const Register = ({ setLogin }: IProps) => {
     if (!validation.every((el) => el)) return;
 
     try {
-      await fbRegister(name, email, password);
+      await fbRegister(name, email, password)
+      .then(() => setTimeout(() => setLogin(true), 4000));
       toast.success(`${t('allright')}`);
     } catch {
       toast.error(`${t('noallright')}`);
@@ -56,7 +57,7 @@ export const Register = ({ setLogin }: IProps) => {
     <div className="modal" onClick={handleClose}>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
