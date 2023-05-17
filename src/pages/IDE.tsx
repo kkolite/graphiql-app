@@ -25,7 +25,6 @@ async function startFetchUnnamedQuery(
   if (endpoint !== '' && query !== '') {
     try {
       const response = await fetchGraphQL(query, name, variable, endpoint, header);
-      console.log('response', response);
       return response;
     } catch (e) {
       return false;
@@ -53,6 +52,7 @@ export const IDE = () => {
   }
 
   const handelChangeEP = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== endpoint) setVariable('');
     dispatch(setEndpoint(e.target.value));
   };
   const handelChangeQ = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -187,7 +187,10 @@ export const IDE = () => {
           <div className={graphVarpanel} onClick={queryVar}>
             {t('queryVar')}
           </div>
-          {(varRow && <textarea onChange={handelChangeV} rows={varRow}></textarea>) || ``}
+          {(varRow && (
+            <textarea value={variable} onChange={handelChangeV} rows={varRow}></textarea>
+          )) ||
+            ``}
         </div>
         <div className="graph__result">
           {result && (

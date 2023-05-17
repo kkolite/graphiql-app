@@ -15,7 +15,6 @@ export const PrivateRoute = ({ children, forAnonim, redirect }: IProps) => {
   const result = fbCheck();
 
   useEffect(() => {
-    //const result = fbCheck();
     setWell(result);
     setLoading(false);
   }, [result]);
