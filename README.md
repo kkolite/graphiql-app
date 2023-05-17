@@ -1,4 +1,10 @@
 # graphiql-app
+
+The project you can run:
+
+**npm run dev**
+
+Runs the app in the development mode. Open http://localhost:5173 to view it in the browser.
 ## Exemples for GrafQL query ##
 1. Endpoint: https://rickandmortyapi.com/graphql
 ### Simple query ###

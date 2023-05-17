@@ -22,7 +22,7 @@
 	"resSize": " RESPONSE SIZE",
 	"ms": "ms",
 	"bytes": "bytes ",
-	"empty": "No Schema :(",
+	"empty": "No Schema 🤷",
 	"loading": "Loading...",
 	"request": "Request Headers",
 	"key": "KEY",
@@ -85,5 +85,7 @@
 	"findpage": "we couldn’t find the page you were looking for ",
 	"gohome": "Go home",
 	"showdoc": "Show Docs",
-	"queryVar": "Query Variables"
+	"queryVar": "Query Variables",
+	"query": "Query",
+	"result": "Result"
 }
