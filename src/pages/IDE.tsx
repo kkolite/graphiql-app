@@ -196,8 +196,8 @@ export const IDE = () => {
           <label className="switcher__onoffswitch-label" htmlFor="onoffswitch">
             <div
               className="switcher__onoffswitch-inner"
-              data-checked="Query"
-              data-unchecked="Result"
+              data-checked={t('query')}
+              data-unchecked={t('result')}
             ></div>
             <div className="switcher__onoffswitch-switch"></div>
           </label>

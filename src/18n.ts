@@ -11,10 +11,6 @@ i18n
     fallbackLng: 'ru',
     returnNull: false,
     debug: false,
-    // detection: {
-    // 	order: ['queryString', 'cookie'],
-    // 	cache: ['cookie'],
-    // },
     interpolation: {
       escapeValue: false,
     },
