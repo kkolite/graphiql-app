@@ -1,4 +1,6 @@
 export const RESPONS_STATUS = 199;
+export const ENDPOINT = 'https://rickandmortyapi.com/graphql';
+
 export const operationsDoc = `query MyQuery {
     characters {
       results {

@@ -17,29 +17,28 @@ query MyQuery {
 ### Query with variable ###
 ```
 query MyQuery($id: ID!) {
-  characters {
-    results {
-      gender
-      image
-      id
-      location {
-        name
-      }
-      name
-    }
-  }
   character(id: $id) {
     id
     name
+    gender
+    status
     species
+   type
+   image
+   created
+  }
+characters {
+    results {
+      id
+      name
+   }
   }
 }
 ```
 variable:
 ```
 {
-  "id": 2,
-  "gender": "Female"
+  "id": "4"
 }
 ```
 

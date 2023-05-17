@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { ENDPOINT } from '../../data/variable';
+
 interface IPostState {
   endpoint: string;
 }
 
 const initialState: IPostState = {
-  endpoint: 'https://rickandmortyapi.com/graphql',
+  endpoint: ENDPOINT,
 };
 
 const endpointSlice = createSlice({

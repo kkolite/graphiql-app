@@ -1,5 +1,5 @@
-import { PATTERN } from "../data/patterns";
-import { MAX_AGE, PATH, TOKEN } from "../data/variable";
+import { PATTERN } from '../data/patterns';
+import { MAX_AGE, PATH, TOKEN } from '../data/variable';
 
 export const setToken = (token: string) => {
   const options = {
