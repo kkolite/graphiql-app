@@ -13,7 +13,7 @@ import './header.scss';
 export const Header = () => {
   const navigate = useNavigate();
   const [sticky, setSticky] = useState('');
-  const { isSignUp } = useAppSelector((state) => state.headers);
+  const { isSignIn } = useAppSelector((state) => state.headers);
   const { t, i18n } = useTranslation();
   const langLength = i18next.languages.length;
   const isUser = fbCheck();
@@ -67,8 +67,8 @@ export const Header = () => {
             {isUser ? (
               <button onClick={handleSignOut}>{t('signout')}</button>
             ) : (
-              <NavLink className={isSignUp ? 'header__active' : ''} to={EPages.LOGIN}>
-                {t('signup')}
+              <NavLink className={isSignIn ? 'header__active' : ''} to={EPages.LOGIN}>
+                {t('signin')}
               </NavLink>
             )}
           </div>
