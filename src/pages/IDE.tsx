@@ -37,6 +37,7 @@ export const IDE = () => {
   const { endpoint } = useAppSelector((state) => state.endpoint);
   const { itemsVal } = useAppSelector((state) => state.reqHeaders);
   const [showDoc, setShowDoc] = useState(false);
+  const [isSwitch, setSwitch] = useState(true);
   const [query, setQuery] = useState(operationsDoc);
   const [variable, setVariable] = useState('');
   const [result, setResult] = useState('');
@@ -123,6 +124,9 @@ export const IDE = () => {
 
   const graphShema = showDoc ? `graph__shema graph__shema_active` : `graph__shema`;
   const graphVarpanel = varRow ? `graph__varpanel open` : `graph__varpanel close`;
+  const graphCount = isSwitch ? `graph__count` : `graph__count graph__count-result`;
+  const graphValue = isSwitch ? `graph__value` : `graph__value graph__value-result`;
+  const graphResult = isSwitch ? `graph__result graph__result-query` : `graph__result`;
 
   return (
     <section className="main__container main__graph graph">
@@ -180,9 +184,29 @@ export const IDE = () => {
         </div>
       </div>
 
+      <div className="graph__switcher switcher">
+        <div className="switcher__onoffswitch">
+          <input
+            id="onoffswitch"
+            type="checkbox"
+            className="switcher__onoffswitch-checkbox"
+            defaultChecked={isSwitch}
+            onChange={() => setSwitch(!isSwitch)}
+          />
+          <label className="switcher__onoffswitch-label" htmlFor="onoffswitch">
+            <div
+              className="switcher__onoffswitch-inner"
+              data-checked="Query"
+              data-unchecked="Result"
+            ></div>
+            <div className="switcher__onoffswitch-switch"></div>
+          </label>
+        </div>
+      </div>
+
       <div className="graph__edit">
-        <div className="graph__count">{lengthStr}</div>
-        <div className="graph__value">
+        <div className={graphCount}>{lengthStr}</div>
+        <div className={graphValue}>
           <textarea value={query} onChange={handelChangeQ} rows={colrow} name="story"></textarea>
           <div className={graphVarpanel} onClick={queryVar}>
             {t('queryVar')}
@@ -192,7 +216,7 @@ export const IDE = () => {
           )) ||
             ``}
         </div>
-        <div className="graph__result">
+        <div className={graphResult}>
           {result && (
             <div className="graph__status">
               {t('resTime')} <span className="graph__status-bold">{info.resTime}</span> {t('ms')}{' '}
