@@ -1,6 +1,7 @@
 .container {
   border: 1px dotted #A545B1;
   width: 300px;
+  overflow-x: auto;
   padding: 10px;
 }
 
@@ -30,4 +31,8 @@
 
 .li {
   list-style: inside !important;
+
+  &__recursion {
+    margin-left: 10px;
+  }
 }
