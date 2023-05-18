@@ -36,10 +36,9 @@ export const getSchema = createAsyncThunk('data/fetchSchema', async (link: strin
     unknown,
     unknown
   >;
-  
+
   result = createObj(schema);
-  console.log(result);
-  
+
   return result;
 });
 
@@ -48,13 +47,11 @@ const querySlice = createSlice({
   initialState,
   reducers: {
     setSelect(state, { payload }: PayloadAction<string>) {
-      const arr = Object
-      .entries(state.origin)
-      .filter((el) => el[1].type === payload);
+      const arr = Object.entries(state.origin).filter((el) => el[1].type === payload);
       const obj = Object.fromEntries(arr);
       const name = payload ? arr[0][0] : '';
       state.select = payload ? arr[0][1].type : '';
-      
+
       state.data = payload
         ? {
             [name]: obj[name],
