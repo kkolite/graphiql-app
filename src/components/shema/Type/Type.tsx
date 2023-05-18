@@ -26,7 +26,7 @@ export const Type = ({ obj, query }: IProps) => {
       </div>
       <div className={styles.args}>
         <label className={styles.args__label}>{t('fields')}</label>
-        <TypeList obj={obj[query]}/>
+        <TypeList obj={obj[query]} />
       </div>
     </div>
   );

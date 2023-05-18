@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setEndpoint } from '../store/slice/endpointSlice';
 import { fetchGraphQL } from '../api/api';
 import { RHeaders } from '../components/reqheaders/Reqheaders';
-import { operationsDoc, infostatus } from '../data/variable';
+import { operationsDoc, infostatus, ROW } from '../data/variable';
 import './ide.scss';
 import './json.scss';
 import { getSchema } from '../store/slice/querySlice';
@@ -47,6 +47,7 @@ export const IDE = () => {
   let lengthStr = '';
   let colrow = 35;
   const countStr = query.split(/\r\n|\r|\n/).length;
+
   for (let i = 1; i < countStr + 1; i += 1) {
     lengthStr += `${i}\r\n`;
     if (countStr > colrow) colrow = countStr;
@@ -92,10 +93,9 @@ export const IDE = () => {
     }
 
     const variableObj: Record<string, string | number> = variable ? JSON.parse(variable) : {};
-
     const start = performance.now();
-
     let head: HeadersInit = {};
+
     itemsVal.forEach((item: object) => {
       const parsHeaader = JSON.parse(JSON.stringify(item));
 
@@ -119,7 +119,7 @@ export const IDE = () => {
   };
 
   const queryVar = () => {
-    setVarRow(varRow === 0 ? 5 : 0);
+    setVarRow(varRow === 0 ? ROW : 0);
   };
 
   const graphShema = showDoc ? `graph__shema graph__shema_active` : `graph__shema`;

@@ -1,4 +1,5 @@
 export const RESPONS_STATUS = 199;
+export const ROW = 5;
 export const ENDPOINT = 'https://rickandmortyapi.com/graphql';
 
 export const operationsDoc = `query MyQuery {

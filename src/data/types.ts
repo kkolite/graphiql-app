@@ -18,11 +18,10 @@ export interface IQueryType {
     name: string;
     type: string;
   }[];
-  fields: (string | IQuery | {_key: string, fields: {name: string}})[];
+  fields: (string | IQuery | { _key: string; fields: { name: string } })[];
   link?: string;
 }
 
 export interface IQuery {
-  //_key: string;
- [key: string]: IQueryType;
+  [key: string]: IQueryType;
 }

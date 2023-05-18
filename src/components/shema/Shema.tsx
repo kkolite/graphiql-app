@@ -22,11 +22,13 @@ export const Shema = () => {
           <Select />
           <div className={styles.list__block}>
             <div className={styles.list}>
-              {keysArr.map((el, i) => (
-                el === '_key'
-                ? <React.Fragment key={i}></React.Fragment>
-                : <Type obj={data} query={el} key={i} />
-              ))}
+              {keysArr.map((el, i) =>
+                el === '_key' ? (
+                  <React.Fragment key={i}></React.Fragment>
+                ) : (
+                  <Type obj={data} query={el} key={i} />
+                )
+              )}
             </div>
           </div>
         </>
