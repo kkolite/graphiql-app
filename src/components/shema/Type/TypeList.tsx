@@ -1,4 +1,4 @@
-import { IQueryType } from "../../../data/types";
+import { IQuery, IQueryType } from "../../../data/types";
 import styles from './Type.module.scss';
 
 interface IProps {
@@ -21,7 +21,7 @@ export const TypeList = ({ obj, recursion }: IProps) => {
                 Object.keys(el).map((type, i) => (
                   type === '_key'
                   ? <></>
-                  : <TypeList obj={el[type]} key={i} recursion={true} />
+                  : <TypeList obj={(el as IQuery)[type]} key={i} recursion={true} />
                 ))
               }
             </li>
