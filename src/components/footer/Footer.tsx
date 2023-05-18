@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import './footer.scss';
-import rsschool from '../../assets/rs_shool.svg';
+import rsschool from '../../assets/rs_shool_react.svg';
 import github from '../../assets/github.png';
 import cats from '../../assets/fcats.png';
 
