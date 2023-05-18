@@ -17,11 +17,11 @@ export const Type = ({ obj, query }: IProps) => {
       <div className={styles.args}>
         <label className={styles.args__label}>{t('args')}</label>
         <ul className={styles.list}>
-          {/*obj[query].args.map((el, i) => (
+          {obj[query].args?.map((el, i) => (
             <li key={i} className={styles.li}>
               {el.name} ({el.type})
             </li>
-          ))*/}
+          ))}
         </ul>
       </div>
       <div className={styles.args}>
