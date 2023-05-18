@@ -10,7 +10,11 @@
       align-items: center;
       gap: 14px;
    }
-   &__rsschool {}
+   &__rsschool {
+      & img {
+         width: 108px;
+      }
+   }
    &__project {}
    &__link {
       display: flex;
