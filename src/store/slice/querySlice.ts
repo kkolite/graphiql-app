@@ -36,6 +36,8 @@ export const getSchema = createAsyncThunk('data/fetchSchema', async (link: strin
     unknown,
     unknown
   >;
+  console.log(schema);
+  
   result = createObj(schema);
 
   return result;

@@ -10,16 +10,17 @@ export enum EValidate {
   PASSWORD = 'PASSWORD',
 }
 
-interface IQueryType {
+export interface IQueryType {
   name: string;
   description: string;
   args: {
     name: string;
     type: string;
   }[];
-  fields: string[];
+  fields: (string | IQuery)[];
 }
 
 export interface IQuery {
-  [key: string]: IQueryType;
+  //_key: string;
+ [key: string]: IQueryType;
 }
