@@ -37,7 +37,7 @@ export const TypeList = ({ obj, recursion }: IProps) => {
       ) : (
         recursion 
         ? <li 
-            className={styles.li__recursion + ' ' + styles.li}
+            className={styles.li__recursion + ' ' + styles.li + ' ' + (obj.link ? styles.link : '')}
             onClick={obj.link ? handleClick : () => {}}
           >
             {obj.name}

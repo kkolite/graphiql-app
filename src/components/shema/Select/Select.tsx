@@ -11,17 +11,18 @@ export const Select = () => {
   const keys = Object.values(data);
 
   const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    //setValue(e.target.value);
-    dicpatch(setSelect(e.target.value));
-    console.log(value);
+    dicpatch(setSelect(e.target.value));    
   };
 
   return (
     <select value={value} onChange={handleSelect} className={styles.select}>
+      <option value=''>All</option>
       {keys.map((el, i) => (
-        <option value={el.type} key={i} className={styles.option}>
-          {el.name}
-        </option>
+        typeof el === 'string'
+        ? <></>
+        : <option value={el.type} key={i} className={styles.option}>
+            {el.name}
+          </option>
       ))}
     </select>
   );
