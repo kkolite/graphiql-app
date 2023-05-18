@@ -4,6 +4,7 @@ import { useAppSelector } from '../../store/hooks';
 import { Select } from './Select/Select';
 import { Type } from './Type/Type';
 import styles from './Schema.module.scss';
+import React from 'react';
 
 export const Shema = () => {
   const data = useAppSelector((store) => store.query.data);
@@ -23,7 +24,7 @@ export const Shema = () => {
             <div className={styles.list}>
               {keysArr.map((el, i) => (
                 el === '_key'
-                ? <></>
+                ? <React.Fragment key={i}></React.Fragment>
                 : <Type obj={data} query={el} key={i} />
               ))}
             </div>

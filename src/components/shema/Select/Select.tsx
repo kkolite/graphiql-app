@@ -1,10 +1,9 @@
-import { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { setSelect } from '../../../store/slice/querySlice';
 import styles from './Select.module.scss';
 
 export const Select = () => {
-  //const [value, setValue] = useState('');
   const value = useAppSelector(store => store.query.select);
   const dicpatch = useAppDispatch();
   const data = useAppSelector((store) => store.query.origin);
@@ -19,7 +18,7 @@ export const Select = () => {
       <option value=''>All</option>
       {keys.map((el, i) => (
         typeof el === 'string'
-        ? <></>
+        ? <React.Fragment key={i}></React.Fragment>
         : <option value={el.type} key={i} className={styles.option}>
             {el.name}
           </option>

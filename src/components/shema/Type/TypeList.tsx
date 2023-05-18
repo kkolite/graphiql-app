@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import React, { MouseEvent } from "react";
 import { IQuery, IQueryType } from "../../../data/types";
 import { useAppDispatch } from "../../../store/hooks";
 import styles from './Type.module.scss';
@@ -28,7 +28,7 @@ export const TypeList = ({ obj, recursion }: IProps) => {
               {
                 Object.keys(el).map((type, i) => (
                   type === '_key'
-                  ? <></>
+                  ? <React.Fragment key={i}></React.Fragment>
                   : <TypeList obj={(el as IQuery)[type]} key={i} recursion={true} />
                 ))
               }
