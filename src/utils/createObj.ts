@@ -23,11 +23,12 @@ export const createObj = (item: GraphQLFieldMap<unknown, unknown>, name?: string
         return createObj(newObj._fields, el);
       }
       if (newObj.hasOwnProperty('ofType') && newObj.ofType.name) {
-        return {_key: el, fields: {name: `type of ${newObj.ofType.name}`}}
+        return {_key: el, fields: {name: `${newObj.ofType.name}`, link: true}}
       }
       return el
     });
     result[key].fields = fields;
+    result[key].type = item[key].type.toString();   
   }
 
   (result as unknown as TKey)._key = name || '';

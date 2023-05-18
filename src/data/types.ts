@@ -12,12 +12,14 @@ export enum EValidate {
 
 export interface IQueryType {
   name: string;
+  type: string;
   description: string;
   args: {
     name: string;
     type: string;
   }[];
   fields: (string | IQuery | {_key: string, fields: {name: string}})[];
+  link?: string;
 }
 
 export interface IQuery {

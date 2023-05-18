@@ -1,5 +1,8 @@
+import React, { MouseEvent } from "react";
 import { IQuery, IQueryType } from "../../../data/types";
+import { useAppDispatch } from "../../../store/hooks";
 import styles from './Type.module.scss';
+import { setSelect } from "../../../store/slice/querySlice";
 
 interface IProps {
   obj: IQueryType;
@@ -7,6 +10,11 @@ interface IProps {
 }
 
 export const TypeList = ({ obj, recursion }: IProps) => {
+  const disatch = useAppDispatch();
+  const handleClick = (e: MouseEvent<HTMLLIElement, globalThis.MouseEvent>) => {
+    disatch(setSelect(e.currentTarget.textContent as string))
+  }
+
   return (
     <ul className={styles.list}>
       {obj.fields?.length ? (
@@ -20,7 +28,7 @@ export const TypeList = ({ obj, recursion }: IProps) => {
               {
                 Object.keys(el).map((type, i) => (
                   type === '_key'
-                  ? <></>
+                  ? <React.Fragment key={i}></React.Fragment>
                   : <TypeList obj={(el as IQuery)[type]} key={i} recursion={true} />
                 ))
               }
@@ -28,7 +36,10 @@ export const TypeList = ({ obj, recursion }: IProps) => {
         ))
       ) : (
         recursion 
-        ? <li className={styles.li__recursion + ' ' + styles.li}>
+        ? <li 
+            className={styles.li__recursion + ' ' + styles.li + ' ' + (obj.link ? styles.link : '')}
+            onClick={obj.link ? handleClick : () => {}}
+          >
             {obj.name}
           </li>
         : <p>-</p>
