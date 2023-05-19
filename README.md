@@ -1,10 +1,27 @@
-# graphiql-app
+# GraphiQL
+
+**Clone** the project to yourself
+```
+git clone <name project>
+```
+
+After clone do not forget to **switch** to the components branch
+```
+git checkout <name components>
+```
+
+To start the project you need to download and **install** the necessary libraries with the command
+```
+npm install
+```
 
 The project you can run:
+```
+npm run dev
+```
 
-**npm run dev**
+Runs the app in the development mode. Open **http://localhost:5173** to view it in the browser.
 
-Runs the app in the development mode. Open http://localhost:5173 to view it in the browser.
 ## Exemples for GrafQL query ##
 1. Endpoint: https://rickandmortyapi.com/graphql
 ### Simple query ###
