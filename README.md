@@ -1,5 +1,12 @@
 # GraphiQL
 
+## Links
+
+[**Deploy**](https://rss-graphql.netlify.app/)</br>
+[**Video about GraphiQL**](https://youtu.be/XTTEL8_aNhM)
+
+## Local run
+
 **Clone** the project to yourself
 ```
 git clone <name project>
