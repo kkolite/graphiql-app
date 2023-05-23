@@ -94,7 +94,7 @@ export const Register = ({ setLogin }: IProps) => {
 
           <div className="modal__text-input">
             <label>
-              {t('yourpassword')}
+              {t('yourpassword')}: {t('passwordrules')}
               <input
                 type="password"
                 placeholder={t('password') as string}
