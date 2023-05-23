@@ -9,7 +9,7 @@
 
 **Clone** the project to yourself
 ```
-git clone <name project>
+git clone https://github.com/kkolite/graphiql-app.git
 ```
 
 After clone do not forget to **switch** to the components branch
