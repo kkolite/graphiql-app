@@ -14,7 +14,7 @@ git clone <name project>
 
 After clone do not forget to **switch** to the components branch
 ```
-git checkout <name components>
+git checkout develop
 ```
 
 To start the project you need to download and **install** the necessary libraries with the command
