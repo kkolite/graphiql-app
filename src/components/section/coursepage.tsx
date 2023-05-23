@@ -16,7 +16,7 @@ export const CoursePage = () => {
     <section className="main__course course">
       <div className="course__cats-box __container">
         <div className="course__fon-cats" onClick={() => start()}>
-          <img src={cats} alt="he cat's smile" />
+          <img src={cats} alt={t('сatsmile') as string} />
         </div>
       </div>
 
