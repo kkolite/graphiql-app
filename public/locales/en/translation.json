@@ -78,6 +78,7 @@
 	"youremail": "your email",
 	"yourusername": "your username",
 	"yourpassword": "your password",
+	"passwordrules": "at least 8 characters, numbers, capital letter",
 	"allright": "You are registered",
 	"noallright": "You are not registered",
 	"404": "404 ERROR",

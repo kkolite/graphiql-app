@@ -32,7 +32,7 @@ export const ProjectPage = () => {
             </div>
           </div>
           <div className="project__cards">
-            <h2 className="project__caption">STACK</h2>
+            <h2 className="project__caption">{t('stack')}</h2>
             <div className="project__text">
               <ul>
                 <li>- React</li>
