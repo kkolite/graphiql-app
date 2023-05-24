@@ -1,4 +1,4 @@
-describe('IDE page test', () => {
+describe('Modal page test', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.get('.header__lang button').contains('button', 'EN').click();
