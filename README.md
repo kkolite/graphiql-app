@@ -29,6 +29,21 @@ npm run dev
 
 Runs the app in the development mode. Open **http://localhost:5173** to view it in the browser.
 
+
+To verify, to start **eslint**, you need to type the command
+```
+npm run lint
+```
+
+And run the **tests** with the command
+
+**WARNING** The version of the node must be **18** or higher
+
+```
+npm run test
+```
+
+
 ## Exemples for GrafQL query ##
 1. Endpoint: https://rickandmortyapi.com/graphql
 ### Simple query ###
