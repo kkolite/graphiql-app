@@ -5,6 +5,10 @@
 [**Deploy**](https://rss-graphql.netlify.app/)</br>
 [**Video about GraphiQL**](https://youtu.be/XTTEL8_aNhM)
 
+## Important!
+
+Our application can work with any graphql API. However, we cannot guarantee that docks will be generated correctly from any source. Please check it using suggested APIs.
+
 ## Local run
 
 **Clone** the project to yourself
