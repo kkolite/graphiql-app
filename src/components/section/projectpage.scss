@@ -1,0 +1,61 @@
+.project {
+  &__title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 122%;
+    margin: 48px 0;
+  }
+  &__block {
+    display: flex;
+    gap: 80px;
+    @media (max-width: 767.98px) {
+      display: block;
+    }
+  }
+  &__right {
+    width: 50%;
+    @media (max-width: 767.98px) {
+      width: 100%;
+    }
+  }
+  &__left {
+    width: 50%;
+    @media (max-width: 767.98px) {
+      width: 100%;
+    }
+  }
+  &__cards {
+    &:first-child {
+      margin: 0 0 260px 0;
+    }
+    &:not(:last-child) {
+      margin: 0 0 40px 0;
+    }
+    @media (max-width: 767.98px) {
+      &:first-child {
+        margin: 0 0 40px 0;
+      }
+    }
+  }
+  &__chapter {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 122%;
+    text-transform: uppercase;
+    margin: 0 0 21px 0;
+  }
+  &__caption {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 122%;
+    text-transform: uppercase;
+    background: #FAEA68;
+    padding: 4px 11px;
+    margin: 0 0 21px 0;
+  }
+  &__text {
+    line-height: 125%;
+  }
+}

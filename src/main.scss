@@ -1,0 +1,188 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*::before,
+*::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+header,
+nav,
+main,
+footer,
+section,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  color: #495057;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+}
+
+a,
+input,
+button,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+input::-ms-clear {
+  display: none;
+}
+button {
+  background-color: inherit;
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+@font-face {
+  font-family: 'DesignIcons';
+  font-display: swap;
+  src: url('./assets/fonts/MaterialDesignIcons.woff2') format('woff2'), url('./assets/fonts/MaterialDesignIcons.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  src: url("./assets/fonts/Montserrat-Regular.woff2") format("woff2"), url("./assets/fonts/Montserrat-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  src: url("./assets/fonts/Montserrat-Medium.woff2") format("woff2"), url("./assets/fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  src: url("./assets/fonts/Montserrat-SemiBold.woff2") format("woff2"), url("./assets/fonts/Montserrat-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-display: swap;
+  src: url("./assets/fonts/Montserrat-Bold.woff2") format("woff2"), url("./assets/fonts/Montserrat-Bold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+[class*='__container'] {
+  max-width: 1300px;
+  padding: 0 15px;
+  margin: 0 auto;
+  box-sizing: content-box;
+}
+
+.error-block {
+  color: crimson;
+}
+
+.active {
+  color: #A545B1;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  font-size: 18px;
+  background-color: #ffffff;
+  transition: all 0.8s ease 0s;
+  z-index: 8;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  font-size: inherit;
+  box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
+  transition: all 0.8s ease 0s;
+  z-index: 10;
+  & .header__logo img {
+    width: 88px;
+  }
+  & + .main {
+    margin-top: 64px;
+  }
+  @media (max-width: 767.98px){
+    padding: 8px 15px;
+  }
+}
+
+.main {
+  width: 100%;
+  flex: 1 1 auto;
+  padding: 11px 0 0 0;
+}
+
+.footer {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  padding: 11px 0 ;
+  z-index: 0;
+}

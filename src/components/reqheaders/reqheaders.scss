@@ -1,0 +1,59 @@
+.showTable {
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 0 14px 0;
+  &:hover {
+    color: #F75A1B;
+  }
+  &.close {
+    &:before {
+      font-family: "DesignIcons";
+      content: "\F0A03";
+    }
+  }
+  &.open {
+    &:before {
+      font-family: "DesignIcons";
+      content: "\F06B6";
+    }
+  }
+}
+
+.requestHeader {
+  width: 100%;
+  border-collapse: collapse;
+  &.thead {
+    background-color: #104068;
+    color: #ffffff;
+  }
+  & th {
+    border: 1px solid #104068;
+    padding: 8px 2px;
+  }
+  & td {
+    font-weight: 500;
+    border: 1px solid #104068;
+    padding: 8px 4px;
+  }
+  & input {
+    width: 100%;
+  }
+  & .requestBtnDell {
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      color: crimson;
+    }
+  }
+  & .requestBtnAdd {
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      color: #F75A1B;
+    }
+  }
+}
+

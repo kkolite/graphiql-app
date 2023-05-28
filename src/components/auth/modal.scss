@@ -1,0 +1,100 @@
+.modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(0, 0, 0, 0.6);
+   z-index: 11;
+   &__box {
+      font-size: 18px;
+      border: 1px solid #d3d4d5;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 18px 30px 30px;
+      @media (max-width: 767.98px){
+         padding: calc(11px + 7 * ((100vw - 320px) / 448)) calc(11px + 19 * ((100vw - 320px) / 448)) calc(11px + 19 * ((100vw - 320px) / 448));
+      }
+   }
+   &__close {
+      display: flex;
+      justify-content: flex-end;
+      & div {
+         font-weight: 500;
+         border: 1px solid #d3d4d5;
+         border-radius: 4px;
+         padding: 8px;
+         cursor: pointer;
+         &:hover {
+            color: crimson;
+         }
+      }
+   }
+   &__name {
+      text-align: center;
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 181%;
+      margin: 0 0 21px 0;
+   }
+   &__text-input {
+      margin: 0 0 21px 0;
+      & label {
+         display: flex;
+         flex-direction: column;
+         background: #F9F9FC;
+         border: 1px solid #E5E8ED;
+         border-radius: 10px;
+         padding: 14px 20px;
+         font-size: 11px;
+         line-height: 118%;
+         gap: 6px;
+         margin: 0 0 8px 0;
+      }
+      & input {
+         width: 480px;
+         font-weight: 600;
+         font-size: 24px;
+         line-height: 120%;
+         background: inherit;
+         @media (max-width: 767.98px){
+            width: 100%;
+         }
+      }
+   }
+   &__error {
+      font-size: 14px;
+      line-height: 118%;
+      color: crimson;
+   }
+   &__error-all {
+      font-size: 14px;
+      line-height: 118%;
+      color: crimson;
+      margin: 0 0 21px 0;
+   }
+   &__btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(0deg, #A545B1, #A545B1), linear-gradient(0deg, #3E505B, #3E505B), #81ADC8;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 21px;
+      line-height: 123%;
+      color: #ffffff;
+      margin: 0 0 21px 0;
+   }
+   &__account-have {
+      & span {
+         font-weight: 500;
+         color: #A545B1;
+         cursor: pointer;
+      }
+   }
+}

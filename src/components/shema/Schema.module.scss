@@ -1,0 +1,36 @@
+@mixin flexColumn($n) {
+  display: flex;
+  flex-direction: column;
+  gap: $n
+}
+
+.container {
+  padding: 30px 0;
+  @include flexColumn(20px);
+}
+
+.list {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+
+  &__block {
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      width: 24px;
+      height: 8px; 
+      background-color: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #A545B1;
+        border-radius: 9em;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #be2cd1;
+    }
+  }
+}
