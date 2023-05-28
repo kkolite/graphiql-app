@@ -7,6 +7,8 @@ type TGraphType = {
 type TFields = { _fields: string | number };
 type TKey = { _key: string };
 
+const graphqlTypes = ['String', 'ID', 'Int', 'Float', 'Boolean'];
+
 export const createObj = (item: GraphQLFieldMap<unknown, unknown>, name?: string) => {
   const result: IQuery = JSON.parse(JSON.stringify(item || {}));
   for (const key in item) {
@@ -17,7 +19,11 @@ export const createObj = (item: GraphQLFieldMap<unknown, unknown>, name?: string
       if (Object.hasOwn(newObj, '_fields')) {
         return createObj(newObj._fields, el);
       }
-      if (Object.hasOwn(newObj, 'ofType') && newObj.ofType.name) {
+      if (
+        Object.hasOwn(newObj, 'ofType') &&
+        newObj.ofType.name &&
+        !graphqlTypes.some((el) => el === newObj.ofType.name)
+      ) {
         return { _key: el, fields: { name: `${newObj.ofType.name}`, link: true } };
       }
       return el;
